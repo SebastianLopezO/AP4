@@ -2,6 +2,23 @@ import Herencia.*;
 import Polimorfismo.*;
 public class Main {
     public static void main(String[] args) {
+        // Crear instancias de cada ave
+        Ganso ave1 = new Ganso();
+        Pato ave2 = new Pato();
+        Gallina ave3 = new Gallina();
+
+        // Llamar al método hacerSonido de cada ave
+        ave1.Comer();
+        ave2.Comer();
+        ave3.Comer();
+
+        //Diferente Sonido
+        ave1.hacerSonido();
+        ave2.hacerSonido();
+        ave3.hacerSonido();
+    }
+
+    public static void EjercicoPolimorfismo(){
         Avión avion = new Avión(900);
         Caballo caballo = new Caballo(40);
         Coche coche = new Coche(120);
@@ -18,11 +35,16 @@ public class Main {
 
     public static void EjercicioHerencia(){
         // Crear instancias de cada ave
-        Ave ave1 = new Ganso();
-        Ave ave2 = new Pato();
-        Ave ave3 = new Gallina();
+        Ganso ave1 = new Ganso();
+        Pato ave2 = new Pato();
+        Gallina ave3 = new Gallina();
 
         // Llamar al método hacerSonido de cada ave
+        ave1.Comer();
+        ave2.Comer();
+        ave3.Comer();
+
+        //Diferente Sonido
         ave1.hacerSonido();
         ave2.hacerSonido();
         ave3.hacerSonido();

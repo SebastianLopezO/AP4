@@ -1,7 +1,8 @@
 package Herencia;
 
 public class Ave {
-    public void hacerSonido() {
-        System.out.println("La ave hace un sonido genérico");
+    String Name;
+    public void Comer() {
+        System.out.println("Come comida generica de Ave");
     }
 }
