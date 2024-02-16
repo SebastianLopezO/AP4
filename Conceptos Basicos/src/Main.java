@@ -1,8 +1,33 @@
+import Herencia.*;
+import Polimorfismo.*;
 public class Main {
     public static void main(String[] args) {
+        Avión avion = new Avión(900);
+        Caballo caballo = new Caballo(40);
+        Coche coche = new Coche(120);
 
+        avion.avanzar();
+        avion.frenar();
+
+        caballo.avanzar();
+        caballo.frenar();
+
+        coche.avanzar();
+        coche.frenar();
     }
 
+    public static void EjercicioHerencia(){
+        // Crear instancias de cada ave
+        Ave ave1 = new Ganso();
+        Ave ave2 = new Pato();
+        Ave ave3 = new Gallina();
+
+        // Llamar al método hacerSonido de cada ave
+        ave1.hacerSonido();
+        ave2.hacerSonido();
+        ave3.hacerSonido();
+
+    }
     public static void EjercicioCaja(){
         // Crear una instancia de la clase Caja
         Caja miCaja = new Caja(10, 20);
