@@ -1,10 +1,23 @@
 package view;
 import bean.Ajedrez;
+import bean.ListNumeros;
 import bean.Listas;
 import logic.Partidos;
 
 public class Main {
     public static void main(String[] args) {
+
+    }
+
+    public static void EjercicioNumeros(){
+        ListNumeros Nums = new ListNumeros("Resultados clima");
+        Nums.ReadData();
+        Nums.Show();
+        Nums.AllSize();
+        Nums.Prom();
+    }
+
+    public static void EjercicioFutbol(){
         Partidos PartidosEU = new Partidos("Liga Europea");
         PartidosEU.ReadData();
         PartidosEU.Show();
