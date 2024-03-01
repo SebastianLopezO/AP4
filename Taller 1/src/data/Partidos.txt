@@ -46,5 +46,3 @@ Atletico Madrid::Getafe::0::1
 Getafe::Valencia::2::1
 Mallorca::Malaga::1::4
 Malaga::Atletico Madrid::0::2
-
-

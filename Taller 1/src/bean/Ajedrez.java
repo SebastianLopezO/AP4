@@ -28,9 +28,11 @@ public class Ajedrez {
     }
 
     public void InputHourse(){
+        Show();
         String Position = GetDato("Posición","el caballo (ejm: A8)");
         if(Position.matches("^[A-H][1-8]$")){
             PosHourse(Position);
+            Show();
         }else{
             System.out.println("Debes ingresar una posición valida");
             JOptionPane.showMessageDialog(null, "Debes ingresar una posición valida", "Validación", JOptionPane.ERROR_MESSAGE);
