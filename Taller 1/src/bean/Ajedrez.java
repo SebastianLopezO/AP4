@@ -3,6 +3,7 @@ package bean;
 import javax.swing.*;
 import java.util.ArrayList;
 import java.util.Arrays;
+import static utility.InputPane.GetDato;
 
 public class Ajedrez {
     private int Tmz;
