@@ -5,6 +5,7 @@ import bean.Partido;
 import javax.swing.*;
 import java.util.ArrayList;
 import java.io.*;
+import java.util.Iterator;
 
 import static utility.InputPane.GetDato;
 import static utility.InputPane.GetNum;
@@ -19,55 +20,71 @@ public class Partidos {
     }
 
     public void DelNotDraw() {
-        for (Partido partido : ListaPartidos) {
+        Iterator<Partido> iterator = ListaPartidos.iterator();
+        while (iterator.hasNext()) {
+            Partido partido = iterator.next();
             if (partido.getGoalsLocal() != partido.getGoalsVisit()) {
-                ListaPartidos.remove(partido);
+                iterator.remove();
             }
         }
     }
 
     public void WinLocal() {
         ArrayList<Partido> Duplicate = new ArrayList<>(ListaPartidos);
-        for (Partido partido : ListaPartidos) {
+        Iterator<Partido> iterator = ListaPartidos.iterator();
+        while (iterator.hasNext()) {
+            Partido partido = iterator.next();
             if (partido.getGoalsLocal() <= partido.getGoalsVisit()) {
-                ListaPartidos.remove(partido);
+                iterator.remove();
             }
         }
         Show();
         ListaPartidos = Duplicate;
+        System.out.println();
     }
 
     public void WinVisit() {
         ArrayList<Partido> Duplicate = new ArrayList<>(ListaPartidos);
-        for (Partido partido : ListaPartidos) {
+        Iterator<Partido> iterator = ListaPartidos.iterator();
+        while (iterator.hasNext()) {
+            Partido partido = iterator.next();
             if (partido.getGoalsLocal() >= partido.getGoalsVisit()) {
-                ListaPartidos.remove(partido);
+                iterator.remove();
             }
         }
         Show();
         ListaPartidos = Duplicate;
+        System.out.println();
     }
 
     public void Draw() {
         ArrayList<Partido> Duplicate = new ArrayList<>(ListaPartidos);
-        for (Partido partido : ListaPartidos) {
-            if (partido.getGoalsLocal() != partido.getGoalsVisit()) {
-                ListaPartidos.remove(partido);
+        Iterator<Partido> iterator = ListaPartidos.iterator();
+        while (iterator.hasNext()) {
+            Partido partido = iterator.next();
+            if (partido.getGoalsLocal() == partido.getGoalsVisit()) {
+                iterator.remove();
             }
         }
         Show();
         ListaPartidos = Duplicate;
+        System.out.println();
     }
 
     public void Rout() {
         ArrayList<Partido> Duplicate = new ArrayList<>(ListaPartidos);
-        for (Partido partido : ListaPartidos) {
+
+        Iterator<Partido> iterator = ListaPartidos.iterator();
+        while (iterator.hasNext()) {
+            Partido partido = iterator.next();
             if (Math.abs(partido.getGoalsLocal() - partido.getGoalsVisit()) < 3) {
-                ListaPartidos.remove(partido);
+                iterator.remove();
             }
         }
+
         Show();
         ListaPartidos = Duplicate;
+        System.out.println();
     }
 
 

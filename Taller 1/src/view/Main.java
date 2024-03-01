@@ -6,7 +6,7 @@ import logic.Partidos;
 
 public class Main {
     public static void main(String[] args) {
-
+        EjercicioFutbol();
     }
 
     public static void EjercicioNumeros(){
@@ -21,6 +21,11 @@ public class Main {
         Partidos PartidosEU = new Partidos("Liga Europea");
         PartidosEU.ReadData();
         PartidosEU.Show();
+
+        PartidosEU.Rout(); //Goleada
+        PartidosEU.WinVisit();
+        PartidosEU.WinLocal();
+        PartidosEU.DelNotDraw();
     }
 
     public static void EjercicioAjedrez(){
