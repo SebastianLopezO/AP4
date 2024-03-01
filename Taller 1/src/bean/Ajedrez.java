@@ -1,17 +1,18 @@
-package view;
+package bean;
+
 import javax.swing.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class Main {
-    public static void main(String[] args) {
-        /*Letras*/
-        ArrayList<Character> Letters = new ArrayList<>(Arrays.asList('A', 'B', 'C', 'D','E','F','G','H'));
+public class Ajedrez {
+    private int Tmz;
+    private ArrayList<Character> Letters;
+    ArrayList<ArrayList<Integer>> Tab;
 
-        /*Definición de Tablero*/
-        int Tmz = 8;
-        ArrayList<ArrayList<Integer>> Tablero = new ArrayList<>();
-
+    public Ajedrez(){
+        this.Tmz = 8;
+        this.Letters = new ArrayList<>(Arrays.asList('A', 'B', 'C', 'D','E','F','G','H'));
+        this.Tab = new ArrayList<>();
         for (int i = 0; i < Tmz; i++) {
             ArrayList<Integer> fila = new ArrayList<>();
             for (int j = 0; j < Tmz; j++) {
@@ -21,83 +22,70 @@ public class Main {
                     fila.add(1); // Blanca
                 }
             }
-            Tablero.add(fila);
+            Tab.add(fila);
         }
-
-        ShowTabConsol(Tablero);
-        showTabPane(Tablero);
-        String Position = GetDato("Posición","el caballo (ejm: A8)");
-        if(Position.matches("^[A-H][1-8]$")){
-            int posC = Letters.indexOf(Character.toUpperCase(Position.charAt(0)));
-            int posF = 8-Integer.parseInt(Position.substring(1));
-            
-
-            if ((posC + posF) % 2 == 0) {
-                Tablero.get(posF).set(posC, 2);
-            } else {
-                Tablero.get(posF).set(posC, 3);
-            }
-
-            ArrayList<int[]> Pos = PosHourse(posF,posC);
-            System.out.print("Las posiciones habiles son: ");
-            for (int[] item : Pos) {
-                int x = item[0];
-                int y = item[1];
-                System.out.print(Letters.get(y)+""+(8-x)+" ");
-                if ((x + y) % 2 == 0) {
-                    Tablero.get(x).set(y,4);
-                } else {
-                    Tablero.get(x).set(y,5);
-                }
-            }
-            System.out.println();
-
-            showTabPane(Tablero);
-            ShowTabConsol(Tablero);
-        }else{
-            JOptionPane.showMessageDialog(null, "La posición no es válida.", "Validación", JOptionPane.ERROR_MESSAGE);
-        }
-
     }
 
-    public static ArrayList<int[]> PosHourse(int x, int y) {
-        ArrayList<int[]> pos = new ArrayList<>();
+    public void InputHourse(){
+        String Position = GetDato("Posición","el caballo (ejm: A8)");
+        if(Position.matches("^[A-H][1-8]$")){
+            PosHourse(Position);
+        }else{
+            System.out.println("Debes ingresar una posición valida");
+            JOptionPane.showMessageDialog(null, "Debes ingresar una posición valida", "Validación", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    public void PosHourse(String Position) {
+        int posC = Letters.indexOf(Character.toUpperCase(Position.charAt(0)));
+        int posF = 8-Integer.parseInt(Position.substring(1));
+        if ((posC + posF) % 2 == 0) {
+            Tab.get(posF).set(posC, 2);
+        } else {
+            Tab.get(posF).set(posC, 3);
+        }
+        ArrayList<int[]> Pos = new ArrayList<>();
 
         int[][] movs = { { 2, 1 }, { 2, -1 }, { -2, 1 }, { -2, -1 }, { 1, 2 }, { 1, -2 }, { -1, 2 }, { -1, -2 } };
 
         for (int[] mov : movs) {
-            int newX = x + mov[0];
-            int newY = y + mov[1];
+            int newX = posF + mov[0];
+            int newY = posC + mov[1];
 
             if (esMov(newX, newY)) {
-                pos.add(new int[] { newX, newY });
+                Pos.add(new int[] { newX, newY });
             }
         }
+        System.out.print("Las posiciones habiles son: ");
+        String msj = "";
+        for (int[] item : Pos) {
+            int x = item[0];
+            int y = item[1];
+            System.out.print(Letters.get(y)+""+(8-x)+" ");
+            msj +=Letters.get(y)+""+(8-x)+" ";
+            if ((x + y) % 2 == 0) {
+                Tab.get(x).set(y,4);
+            } else {
+                Tab.get(x).set(y,5);
+            }
+        }
+        System.out.println();
 
-        return pos;
+        JOptionPane.showMessageDialog(null, msj, "Posiciones Habiles", JOptionPane.INFORMATION_MESSAGE);
+
     }
 
-    public static boolean esMov(int x, int y) {
+
+    public boolean esMov(int x, int y) {
         return x >= 0 && x < 8 && y >= 0 && y < 8;
     }
-    private static String GetDato(String Type,String Option) {
-        String line;
-        while (true) {
-            line = JOptionPane.showInputDialog("Ingrese un/una " + Type + " para " + Option + ": ");
-            if(line != null){
-                if (line.trim().isEmpty()) {
-                    System.out.println("No puedes ingresar un/una " + Type +" vacia para " + Option);
-                } else {
-                    return line;
-                }
 
-            }else{
-                return "";
-            }
-        }
+    public void Show(){
+        ShowTabConsol();
+        showTabPane();
     }
 
-    private static void ShowTabConsol(ArrayList<ArrayList<Integer>> Tab){
+    private void ShowTabConsol(){
         System.out.println("  ╔═══════════════════════════════════════════╗");
         System.out.println("  ║       A   B   C   D   E   F   G   H       ║");
         System.out.println("  ║     _________________________________     ║");
@@ -135,7 +123,7 @@ public class Main {
         System.out.println("  ╚═══════════════════════════════════════════╝");
     }
 
-    private static void showTabPane(ArrayList<ArrayList<Integer>> Tab) {
+    private void showTabPane() {
         StringBuilder htmlTable = new StringBuilder("<html>");
         htmlTable.append("  <table border='1' cellpadding='5'>");
         htmlTable.append("<tr><th></th><th>A</th><th>B</th><th>C</th><th>D</th><th>E</th><th>F</th><th>G</th><th>H</th></tr>");
