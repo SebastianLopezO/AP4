@@ -8,13 +8,13 @@ Athletic::Real Sociedad::3::0
 Real Sociedad::Alaves::2::1
 Espanyol::Getafe::0::2
 Getafe::Athletic::1::1
-Celta::Malaga::2::0::2
+Celta::Malaga::2::0
 Malaga::Espanyol::1::2
 Cadiz::Real Madrid::1::2
 Real Madrid::Celta::2::3
 Sevilla::Racing Santander::1::0
 Racing Santander::Cadiz::0::1
-Osasuna::Villarreal::2::1::1
+Osasuna::Villarreal::2::1
 Villarreal::Sevilla::1::1
 Betis::Zaragoza::0::0
 Zaragoza::Osasuna::3::1
@@ -46,3 +46,4 @@ Atletico Madrid::Getafe::0::1
 Getafe::Valencia::2::1
 Mallorca::Malaga::1::4
 Malaga::Atletico Madrid::0::2
+Nacional::Medellín::5::3

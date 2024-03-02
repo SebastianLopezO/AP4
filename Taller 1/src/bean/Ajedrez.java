@@ -29,7 +29,7 @@ public class Ajedrez {
 
     public void InputHourse(){
         Show();
-        String Position = GetDato("Posición","el caballo (ejm: A8)");
+        String Position = (GetDato("Posición","el caballo (ejm: A8)")).toUpperCase();
         if(Position.matches("^[A-H][1-8]$")){
             PosHourse(Position);
             Show();
@@ -40,7 +40,7 @@ public class Ajedrez {
     }
 
     public void PosHourse(String Position) {
-        int posC = Letters.indexOf(Character.toUpperCase(Position.charAt(0)));
+        int posC = Letters.indexOf(Position.charAt(0));
         int posF = 8-Integer.parseInt(Position.substring(1));
         if ((posC + posF) % 2 == 0) {
             Tab.get(posF).set(posC, 2);
@@ -128,7 +128,11 @@ public class Ajedrez {
 
     private void showTabPane() {
         StringBuilder htmlTable = new StringBuilder("<html>");
-        htmlTable.append("  <table border='1' cellpadding='5'>");
+        htmlTable.append("<style>");
+        htmlTable.append("table { border-collapse: collapse; }");
+        htmlTable.append("td, th { width: 40px; height: 40px; text-align: center; font-size: 16px;  }");
+        htmlTable.append("</style>");
+        htmlTable.append("  <table border='1'>");
         htmlTable.append("<tr><th></th><th>A</th><th>B</th><th>C</th><th>D</th><th>E</th><th>F</th><th>G</th><th>H</th></tr>");
 
         int Tmz = Tab.size();
