@@ -29,6 +29,7 @@ public class Panaderos implements File {
             String apellidos = GetDato("apellido","para el Panadero");
             int anosExperiencia = GetNum("los años de experiencia del Panadero");
             int edad = GetAge("la edad para el Panadero");
+
             ListaPanaderos.add(new Panadero(cedula, nombres, apellidos, anosExperiencia, edad));
             System.out.println("El Panadero con la cedula "+cedula+" ha sido agregado");
             JOptionPane.showMessageDialog(null, "El Panadero con la cedula "+cedula+" ha sido agregado");
@@ -61,11 +62,11 @@ public class Panaderos implements File {
 
         if (count == 0) {
             System.out.println("No hay Panaderos con años de experiencia entre 2 y 5.");
-            JOptionPane.showMessageDialog(null, "No hay trabajadores con años de experiencia entre 2 y 5.", "Porcentaje de Trabajadores", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "No hay panaderos con años de experiencia entre 2 y 5.", "Porcentaje de Panaderos", JOptionPane.INFORMATION_MESSAGE);
         } else {
             double porcentaje = (double) count / ListaPanaderos.size() * 100;
             System.out.println("El porcentaje de Panaderos con años de experiencia entre 2 y 5 es: " + porcentaje + "%");
-            JOptionPane.showMessageDialog(null, "El porcentaje de Panaderos con años de experiencia entre 2 y 5 es: " + porcentaje + "%", "Porcentaje de Trabajadores", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "El porcentaje de Panaderos con años de experiencia entre 2 y 5 es: " + porcentaje + "%", "Porcentaje de Panaderos", JOptionPane.INFORMATION_MESSAGE);
             FilterAnosExp();
         }
     }
@@ -123,9 +124,9 @@ public class Panaderos implements File {
             html.append("<p><b>Años de Experiencia:</b> ").append(panadero.getAnosExperiencia()).append("</p>");
             html.append("</body></html>");
 
-            JOptionPane.showMessageDialog(null, html.toString(), "Datos del Vendedor", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, html.toString(), "Datos del Panadero", JOptionPane.INFORMATION_MESSAGE);
         } else {
-            JOptionPane.showMessageDialog(null, "No se encontró un vendedor con la cédula especificada.", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "No se encontró un Panadero con la cédula especificada.", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 

@@ -60,11 +60,11 @@ public class Vendedores implements File {
 
         if (count == 0) {
             System.out.println("No hay Vendedores con años de experiencia entre 2 y 5.");
-            JOptionPane.showMessageDialog(null, "No hay trabajadores con años de experiencia entre 2 y 5.", "Porcentaje de Trabajadores", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "No hay Vendedores con años de experiencia entre 2 y 5.", "Porcentaje de Vendedores", JOptionPane.INFORMATION_MESSAGE);
         } else {
             double porcentaje = (double) count / ListaVendedores.size() * 100;
             System.out.println("El porcentaje de Vendedores con años de experiencia entre 2 y 5 es: " + porcentaje + "%");
-            JOptionPane.showMessageDialog(null, "El porcentaje de trabajadores con años de experiencia entre 2 y 5 es: " + porcentaje + "%", "Porcentaje de Trabajadores", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "El porcentaje de Vendedores con años de experiencia entre 2 y 5 es: " + porcentaje + "%", "Porcentaje de Trabajadores", JOptionPane.INFORMATION_MESSAGE);
             FilterAnosExp();
         }
     }
