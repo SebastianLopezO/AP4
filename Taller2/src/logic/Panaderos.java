@@ -12,6 +12,7 @@ import java.util.Iterator;
 import static utility.InputPane.GetAge;
 import static utility.InputPane.GetDato;
 import static utility.InputPane.GetNum;
+import static utility.Clr.*;
 
 public class Panaderos implements File {
     private ArrayList<Panadero> ListaPanaderos;
@@ -114,17 +115,16 @@ public class Panaderos implements File {
     public void ShowPanePan(int cedula) {
         Panadero panadero = Search(cedula);
         if (panadero != null) {
-            StringBuilder html = new StringBuilder();
-            html.append("<html><body>");
-            html.append("<h2>Datos del Panadero</h2>");
-            html.append("<p><b>Cedula:</b> ").append(panadero.getCedula()).append("</p>");
-            html.append("<p><b>Nombres:</b> ").append(panadero.getNombres()).append("</p>");
-            html.append("<p><b>Apellidos:</b> ").append(panadero.getApellidos()).append("</p>");
-            html.append("<p><b>Edad:</b> ").append(panadero.getEdad()).append("</p>");
-            html.append("<p><b>Años de Experiencia:</b> ").append(panadero.getAnosExperiencia()).append("</p>");
-            html.append("</body></html>");
+            String html = "<html><body>" +
+                    "<h2>Datos del Panadero</h2>" +
+                    "<p><b>Cedula:</b> " + panadero.getCedula() + "</p>" +
+                    "<p><b>Nombres:</b> " + panadero.getNombres() + "</p>" +
+                    "<p><b>Apellidos:</b> " + panadero.getApellidos() + "</p>" +
+                    "<p><b>Edad:</b> " + panadero.getEdad() + "</p>" +
+                    "<p><b>Años de Experiencia:</b> " + panadero.getAnosExperiencia() + "</p>" +
+                    "</body></html>";
 
-            JOptionPane.showMessageDialog(null, html.toString(), "Datos del Panadero", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, html, "Datos del Panadero", JOptionPane.INFORMATION_MESSAGE);
         } else {
             JOptionPane.showMessageDialog(null, "No se encontró un Panadero con la cédula especificada.", "Error", JOptionPane.ERROR_MESSAGE);
         }
@@ -151,22 +151,26 @@ public class Panaderos implements File {
     public void ShowConsole() {
         String header = String.format("%s de %s", "Lista de Panaderos", this.Name);
         int headerLength = header.length();
-        int separatorLength = 90; // Longitud de la línea separadora
+        int separatorLength = 100; // Longitud de la línea separadora
         int padding = (separatorLength - headerLength) / 2;
-        String separatorLine = "-".repeat(separatorLength);
+        String separatorLine = BG_BL + WL + Bd + "|"+"-".repeat(separatorLength-1) + "|" + RT;
+        String endLine = "-".repeat(separatorLength);
 
         // Encabezado centrado
         System.out.println(separatorLine);
-        System.out.printf("%" + padding + "s%s%" + padding + "s%n", "", header, "");
+        System.out.printf(BG_BL + WL + Bd + "|%" + (padding - 1) + "s%s%" + (padding) + "s|" + RT + "%n", "", header, "");
         System.out.println(separatorLine);
 
         // Columnas
-        System.out.printf("%-10s %-15s %-10s %-18s %-5s%n", "Cedula", "Nombres", "Apellidos", "Años de Experiencia", "Edad");
+        System.out.printf(BG_BL + WL + Bd + "|   %-10s| %-25s| %-25s| %-20s| %-5s   |" + RT + "%n", "Cedula", "Nombres", "Apellidos", "Años de Experiencia", "Edad");
         System.out.println(separatorLine);
 
-        // Datos de los vendedores
+        boolean flagClr = true;
+        String clr = "";
+        // Datos de los panaderos
         for (Panadero panadero : ListaPanaderos) {
-            System.out.printf("%-10d %-15s %-10s %-18d %-5d%n",
+            if(flagClr){ clr = BG_GRD + WL; flagClr = false; }else { clr = BG_GRL+ WL; flagClr = true;}
+            System.out.printf(clr + "|   %-10d| %-25s| %-25s| %-20d| %-5d   |" + RT + "%n",
                     panadero.getCedula(),
                     panadero.getNombres(),
                     panadero.getApellidos(),
@@ -175,22 +179,34 @@ public class Panaderos implements File {
         }
 
         // Pie de la tabla
-        System.out.println(separatorLine);
+        System.out.println(endLine);
     }
 
     public void ShowPane() {
         StringBuilder html = new StringBuilder();
         html.append("<html><body><table border='1'>");
-        html.append("<tr><th>Cedula</th><th>Nombres</th><th>Apellidos</th><th>Años de Exp</th><th>Edad</th></tr>");
+
+        // Encabezado de la tabla en negro con letra blanca y negrita
+        html.append("<tr style='background-color: #000000; color: #ffffff; font-weight: bold;'>");
+        html.append("<th>Cedula</th><th>Nombres</th><th>Apellidos</th><th>Años de Exp</th><th>Edad</th>");
+        html.append("</tr>");
+
+        boolean isGrayDark = true;
 
         for (Panadero panadero : ListaPanaderos) {
-            html.append("<tr>");
+            // Determinar el color de fondo de la fila
+            String bgColor = isGrayDark ? "#404040" : "#737373";
+
+            html.append("<tr style='background-color: ").append(bgColor).append("; color: #ffffff;'>");
             html.append("<td>").append(panadero.getCedula()).append("</td>");
             html.append("<td>").append(panadero.getNombres()).append("</td>");
             html.append("<td>").append(panadero.getApellidos()).append("</td>");
             html.append("<td>").append(panadero.getAnosExperiencia()).append("</td>");
             html.append("<td>").append(panadero.getEdad()).append("</td>");
             html.append("</tr>");
+
+            // Alternar el color de las filas
+            isGrayDark = !isGrayDark;
         }
 
         html.append("</table></body></html>");

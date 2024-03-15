@@ -218,16 +218,16 @@ public class Mensajeros implements File {
 
         // Encabezado centrado
         System.out.println(separatorLine);
-        System.out.printf("%" + padding + "s%s%" + padding + "s%n", "", header, "");
+        System.out.printf("|%" + (padding - 1) + "s%s%" + (padding) + "s|%n", "", header, "");
         System.out.println(separatorLine);
 
         // Columnas
-        System.out.printf("%-10s %-15s %-10s %-5s %-25s %-25s %-25s%n", "Cedula", "Nombres", "Apellidos", "Edad", "EPS", "ARL", "Pension");
+        System.out.printf("|   %-10s| %-25s| %-25s| %-5s| %-25s| %-25s| %-25s   |%n", "Cedula", "Nombres", "Apellidos", "Edad", "EPS", "ARL", "Pension");
         System.out.println(separatorLine);
 
         // Datos de los vendedores
         for (Mensajero mensajero : ListaMensajeros) {
-            System.out.printf("%-10d %-15s %-10s %-5d %-25s %-25s %-25s%n",
+            System.out.printf("|   %-10d| %-25s| %-25s| %-5d| %-25s| %-25s| %-25s   |%n",
                     mensajero.getCedula(),
                     mensajero.getNombres(),
                     mensajero.getApellidos(),

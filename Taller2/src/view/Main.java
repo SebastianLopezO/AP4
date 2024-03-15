@@ -2,13 +2,14 @@ package view;
 
 
 import logic.Mensajeros;
+import logic.Panaderos;
 import logic.Vendedores;
 
 import javax.swing.*;
 
 public class Main {
     public static void main(String[] args) {
-        Mensajeros ListVendedores = new Mensajeros("PanPan");
+        Panaderos ListVendedores = new Panaderos("PanPan");
         ListVendedores.Show();
         ListVendedores.ReadData();
         ListVendedores.Show();

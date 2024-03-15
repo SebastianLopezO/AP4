@@ -182,22 +182,22 @@ public class Vendedores implements File {
     public void ShowConsole() {
         String header = String.format("%s de %s", "Lista de Vendedores", this.Name);
         int headerLength = header.length();
-        int separatorLength = 90; // Longitud de la línea separadora
+        int separatorLength = 126; // Longitud de la línea separadora
         int padding = (separatorLength - headerLength) / 2;
         String separatorLine = "-".repeat(separatorLength);
 
         // Encabezado centrado
         System.out.println(separatorLine);
-        System.out.printf("%" + padding + "s%s%" + padding + "s%n", "", header, "");
+        System.out.printf("|%" + (padding - 1) + "s%s%" + (padding) + "s|%n", "", header, "");
         System.out.println(separatorLine);
 
         // Columnas
-        System.out.printf("%-10s %-15s %-10s %-18s %-5s %-25s%n", "Cedula", "Nombres", "Apellidos", "Años de Experiencia", "Edad", "EPS");
+        System.out.printf("|   %-10s| %-25s| %-25s| %-20s| %-5s| %-25s   |%n", "Cedula", "Nombres", "Apellidos", "Años de Experiencia", "Edad", "EPS");
         System.out.println(separatorLine);
 
         // Datos de los vendedores
         for (Vendedor vendedor : ListaVendedores) {
-            System.out.printf("%-10d %-15s %-10s %-18d %-5d %-25s%n",
+            System.out.printf("|   %-10d| %-25s| %-25s| %-20d| %-5d| %-25s   |%n",
                     vendedor.getCedula(),
                     vendedor.getNombres(),
                     vendedor.getApellidos(),
