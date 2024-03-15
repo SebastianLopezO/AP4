@@ -7,6 +7,7 @@ import javax.swing.*;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
 
 import static utility.InputPane.*;
 
@@ -47,7 +48,7 @@ public class Vendedores implements File {
         }
     }
 
-    public void Promedio(){
+    public void PerAnosExp(){
         int count = 0;
 
         for (Vendedor vendedor : ListaVendedores) {
@@ -58,25 +59,71 @@ public class Vendedores implements File {
         }
 
         if (count == 0) {
-            System.out.println("No hay trabajadores con años de experiencia entre 2 y 5.");
-            JOptionPane.showMessageDialog(null, "No hay trabajadores con años de experiencia entre 2 y 5.");
+            System.out.println("No hay Vendedores con años de experiencia entre 2 y 5.");
+            JOptionPane.showMessageDialog(null, "No hay trabajadores con años de experiencia entre 2 y 5.", "Porcentaje de Trabajadores", JOptionPane.INFORMATION_MESSAGE);
         } else {
-            double promedio = (double) ListaVendedores.size() / count;
-            System.out.println("El promedio de años de experiencia de trabajadores con años entre 2 y 5 es: " + promedio);
-            JOptionPane.showMessageDialog(null, "El promedio de años de experiencia de trabajadores con años entre 2 y 5 es: " + promedio);
+            double porcentaje = (double) count / ListaVendedores.size() * 100;
+            System.out.println("El porcentaje de Vendedores con años de experiencia entre 2 y 5 es: " + porcentaje + "%");
+            JOptionPane.showMessageDialog(null, "El porcentaje de trabajadores con años de experiencia entre 2 y 5 es: " + porcentaje + "%", "Porcentaje de Trabajadores", JOptionPane.INFORMATION_MESSAGE);
+            FilterAnosExp();
         }
     }
 
-    public void perEPS(){
+    public void FilterAnosExp(){
+        ArrayList<Vendedor> Duplicate = new ArrayList<>(ListaVendedores);
+
+        Iterator<Vendedor> iterator = ListaVendedores.iterator();
+        while (iterator.hasNext()) {
+            Vendedor vendedor = iterator.next();
+            int anosExp = vendedor.getAnosExperiencia();
+            if (anosExp < 2 || anosExp > 5) {
+                iterator.remove();
+            }
+        }
+
+        Show();
+        ListaVendedores = Duplicate;
+    }
+
+    public void perEPS(String eps){
         int count = 0;
 
         for (Vendedor vendedor : ListaVendedores) {
-            String eps = vendedor.getEps();
-            if (eps.matches("Sura")) {
+            if (vendedor.getEps().equals(eps)) {
                 count++;
             }
         }
 
+        double per = (double) count / ListaVendedores.size() * 100;
+
+        System.out.println("Porcentaje de Vendedores con EPS '" + eps + "': " + per + "%");
+        JOptionPane.showMessageDialog(null, "Porcentaje de Vendedores con EPS '" + eps + "': " + per + "%", "Porcentaje de Vendedores", JOptionPane.INFORMATION_MESSAGE);
+        FilterEPS(eps);
+    }
+
+    public void FilterEPS(String eps){
+        ArrayList<Vendedor> Duplicate = new ArrayList<>(ListaVendedores);
+
+        Iterator<Vendedor> iterator = ListaVendedores.iterator();
+        while (iterator.hasNext()) {
+            Vendedor vendedor = iterator.next();
+            if (!vendedor.getEps().equals(eps)) {
+                iterator.remove();
+            }
+        }
+
+        Show();
+        ListaVendedores = Duplicate;
+    }
+
+    public void Show() {
+        if (!ListaVendedores.isEmpty()) {
+            ShowConsole();
+            ShowPane();
+        } else {
+            System.out.println("La lista de Vendedores de " + this.Name + " esta vacia");
+            JOptionPane.showMessageDialog(null, "La lista de Vendedores de " + this.Name + " esta vacia", "Validación", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     public void ShowConsoleVen(int cedula) {
@@ -145,7 +192,7 @@ public class Vendedores implements File {
         System.out.println(separatorLine);
 
         // Columnas
-        System.out.printf("%-10s %-15s %-10s %-18s %-25s%n", "Cedula", "Nombres", "Apellidos", "Años de Experiencia", "Edad", "EPS");
+        System.out.printf("%-10s %-15s %-10s %-18s %-5s %-25s%n", "Cedula", "Nombres", "Apellidos", "Años de Experiencia", "Edad", "EPS");
         System.out.println(separatorLine);
 
         // Datos de los vendedores

@@ -9,9 +9,7 @@ public class Main {
         ListaVendedores.ReadData();
         ListaVendedores.ShowConsole();
         ListaVendedores.ShowPane();
-        ListaVendedores.WriteData();
-        ListaVendedores.ShowConsoleVen(10025);
-        ListaVendedores.ShowPaneVen(10031);
-
+        ListaVendedores.perEPS("Sura");
+        ListaVendedores.PerAnosExp();
     }
 }
