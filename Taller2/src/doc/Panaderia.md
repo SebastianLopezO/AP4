@@ -19,6 +19,6 @@ Acciones
 - Opcion de cargar de un archivo plano 10 de cada tipo de trabajador
 - Opcion de ingresar un trabajador
 - Buscar un trabajador
-- Promedio de trabajadores que tienen como años de experiencia entre 2 y 5.
+- Porcentaje de trabajadores que tienen como años de experiencia entre 2 y 5.
 - Porcentaje de trabajadores que tienen eps "Sura".
 - Listar los trabajadores donde la pensión es "Porvenir".
