@@ -1,0 +1,30 @@
+112233;Javier;Fernández;28;Sura;Coomeva;Colpatria
+223344;María;Vargas;35;Coomeva;Colpatria;Seguros Bolívar
+334455;Luis;Rodríguez;40;Colpatria;Seguros Bolívar;Seguros del Estado
+445566;Marcela;Martínez;22;Seguros Bolívar;Seguros del Estado;Mapfre
+556677;Juan;Gómez;25;Seguros del Estado;Mapfre;Coomeva
+667788;Sara;Hernández;30;Mapfre;Coomeva;Colpatria
+778899;Andrés;Díaz;45;Coomeva;Colpatria;Seguros Bolívar
+889900;Laura;Sánchez;20;Colpatria;Seguros Bolívar;Seguros del Estado
+990011;Miguel;Torres;37;Seguros Bolívar;Seguros del Estado;Mapfre
+122334;Isabel;García;50;Seguros del Estado;Mapfre;Coomeva
+334455;Fabián;Rodríguez;40;Seguros Bolívar;Seguros del Estado;Mapfre
+445566;Laura;Martínez;22;Seguros del Estado;Mapfre;Coomeva
+556677;Juan;Gómez;25;Mapfre;Coomeva;Colpatria
+667788;Sara;Hernández;30;Coomeva;Colpatria;Seguros Bolívar
+778899;Andrés;Díaz;45;Colpatria;Seguros Bolívar;Seguros del Estado
+889900;Laura;Sánchez;20;Seguros Bolívar;Seguros del Estado;Mapfre
+990011;Miguel;Torres;37;Seguros del Estado;Mapfre;Coomeva
+122334;Isabel;García;50;Mapfre;Coomeva;Colpatria
+233445;Ricardo;Rodríguez;42;Coomeva;Colpatria;Seguros Bolívar
+344556;Catalina;Martínez;28;Colpatria;Seguros Bolívar;Seguros del Estado
+455667;Javier;Gómez;31;Seguros Bolívar;Seguros del Estado;Mapfre
+566778;Andrea;Hernández;36;Seguros del Estado;Mapfre;Coomeva
+677889;Carlos;Díaz;43;Mapfre;Coomeva;Colpatria
+788900;Gabriela;Sánchez;39;Coomeva;Colpatria;Seguros Bolívar
+899011;Luisa;Torres;38;Colpatria;Seguros Bolívar;Seguros del Estado
+900122;José;García;50;Seguros Bolívar;Seguros del Estado;Mapfre
+122233;Lucas;Rodríguez;36;Seguros del Estado;Mapfre;Coomeva
+233344;Marina;Martínez;31;Mapfre;Coomeva;Colpatria
+344455;Santiago;Gómez;43;Coomeva;Colpatria;Seguros Bolívar
+455566;Valentina;Hernández;48;Colpatria;Seguros Bolívar;Seguros del Estado

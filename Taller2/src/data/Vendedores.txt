@@ -1,0 +1,30 @@
+112233;Alejandro;Fernández;4;28;SaludTotal;Coomeva;Sura
+223344;Patricia;Vargas;6;35;Coomeva;Sura;Nueva EPS
+334455;Luis;Rodríguez;8;40;Sura;Nueva EPS;Sanitas
+445566;Marcela;Martínez;2;22;Nueva EPS;Sanitas;EPS Familiar
+556677;Juan;Gómez;5;25;Sanitas;EPS Familiar;Coomeva
+667788;Sara;Hernández;3;30;EPS Familiar;Coomeva;Sura
+778899;Andrés;Díaz;9;45;Coomeva;Sura;Nueva EPS
+889900;Laura;Sánchez;1;20;Sura;Nueva EPS;Sanitas
+990011;Miguel;Torres;7;37;Nueva EPS;Sanitas;EPS Familiar
+122334;Isabel;García;10;50;Sanitas;EPS Familiar;Coomeva
+223344;Ricardo;Vargas;6;35;Nueva EPS;Sanitas;EPS Familiar
+334455;Catalina;Rodríguez;8;40;Sanitas;EPS Familiar;Coomeva
+445566;Javier;Martínez;2;22;EPS Familiar;Coomeva;Sura
+556677;Andrea;Gómez;5;25;Coomeva;Sura;Nueva EPS
+667788;Carlos;Hernández;3;30;Sura;Nueva EPS;Sanitas
+778899;Gabriela;Díaz;9;45;Nueva EPS;Sanitas;EPS Familiar
+889900;Luisa;Sánchez;1;20;Sanitas;EPS Familiar;Coomeva
+990011;José;Torres;7;37;EPS Familiar;Coomeva;Sura
+122334;Lucas;García;10;50;Coomeva;Sura;Nueva EPS
+233445;Marina;Fernández;4;28;Sura;Nueva EPS;Sanitas
+334556;Santiago;Vargas;8;41;Nueva EPS;Sanitas;EPS Familiar
+445667;Valentina;Rodríguez;2;23;Sanitas;EPS Familiar;Coomeva
+556778;Martín;Martínez;6;36;EPS Familiar;Coomeva;Sura
+667889;Paula;Gómez;3;31;Coomeva;Sura;Nueva EPS
+778900;David;Hernández;9;43;Sura;Nueva EPS;Sanitas
+889011;Andrés;Díaz;1;21;Nueva EPS;Sanitas;EPS Familiar
+990122;Camila;Sánchez;7;38;Sanitas;EPS Familiar;Coomeva
+122233;Diego;Torres;5;26;EPS Familiar;Coomeva;Sura
+233344;Sofía;García;10;48;Coomeva;Sura;Nueva EPS
+344455;Daniel;Martínez;4;29;Sura;Nueva EPS;Sanitas
