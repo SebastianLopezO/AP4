@@ -7,11 +7,11 @@ public class Mensajero {
     private String nombres;
     private String apellidos;
     private int edad;
-    private List<String> eps;
-    private List<String> arl;
-    private List<String> pension;
+    private String eps;
+    private String arl;
+    private String pension;
 
-    public Mensajero(int cedula, String nombres, String apellidos, int edad, List<String> eps, List<String> arl, List<String> pension) {
+    public Mensajero(int cedula, String nombres, String apellidos, int edad, String eps, String arl, String pension) {
         this.cedula = cedula;
         this.nombres = nombres;
         this.apellidos = apellidos;
@@ -54,27 +54,27 @@ public class Mensajero {
         this.edad = edad;
     }
 
-    public List<String> getEps() {
+    public String getEps() {
         return eps;
     }
 
-    public void setEps(List<String> eps) {
+    public void setEps(String eps) {
         this.eps = eps;
     }
 
-    public List<String> getArl() {
+    public String getArl() {
         return arl;
     }
 
-    public void setArl(List<String> arl) {
+    public void setArl(String arl) {
         this.arl = arl;
     }
 
-    public List<String> getPension() {
+    public String getPension() {
         return pension;
     }
 
-    public void setPension(List<String> pension) {
+    public void setPension(String pension) {
         this.pension = pension;
     }
 }

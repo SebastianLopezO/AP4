@@ -1,5 +1,6 @@
 package bean;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Vendedor {
@@ -8,9 +9,9 @@ public class Vendedor {
     private String apellidos;
     private int anosExperiencia;
     private int edad;
-    private List<String> eps;
+    private String eps;
 
-    public Vendedor(int cedula, String nombres, String apellidos, int anosExperiencia, int edad, List<String> eps) {
+    public Vendedor(int cedula, String nombres, String apellidos, int anosExperiencia, int edad, String eps) {
         this.cedula = cedula;
         this.nombres = nombres;
         this.apellidos = apellidos;
@@ -60,11 +61,11 @@ public class Vendedor {
         this.edad = edad;
     }
 
-    public List<String> getEps() {
+    public String getEps() {
         return eps;
     }
 
-    public void setEps(List<String> eps) {
+    public void setEps(String eps) {
         this.eps = eps;
     }
 }

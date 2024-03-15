@@ -29,8 +29,25 @@ public class InputPane {
                 num = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el Numero para "+Option+ ": "));
                 return num;
             } catch (NumberFormatException ex) {
-                JOptionPane.showMessageDialog(null, "No se ha insertado un numero.");
                 System.out.println("No ha insertado un numero, error" + ex);
+                JOptionPane.showMessageDialog(null, "No se ha insertado un numero.");
+            }
+        }
+    }
+
+    public static int GetAge(String Option) {
+        int num;
+        while (true) {
+            try {
+                num = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el Numero para "+Option+ ": "));
+                if(num >= 18){
+                    return num;
+                }
+                System.out.println("No ha insertado una edad valida, debe ser mayor o igual a 18 años");
+                JOptionPane.showMessageDialog(null, "No ha insertado una edad valida, debe ser mayor o igual a 18 años");
+            } catch (NumberFormatException ex) {
+                System.out.println("No ha insertado un numero, error" + ex);
+                JOptionPane.showMessageDialog(null, "No se ha insertado un numero.");
             }
         }
     }
