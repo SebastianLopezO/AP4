@@ -212,7 +212,7 @@ public class Mensajeros implements File {
     public void ShowConsole() {
         String header = String.format("%s de %s", "Lista de Mensajero", this.Name);
         int headerLength = header.length();
-        int separatorLength = 90; // Longitud de la línea separadora
+        int separatorLength = 140; // Longitud de la línea separadora
         int padding = (separatorLength - headerLength) / 2;
         String separatorLine = "-".repeat(separatorLength);
 
@@ -244,7 +244,7 @@ public class Mensajeros implements File {
     public void ShowPane() {
         StringBuilder html = new StringBuilder();
         html.append("<html><body><table border='1'>");
-        html.append("<tr><th>Cedula</th><th>Nombres</th><th>Apellidos</th><th>Años de Exp</th><th>Edad</th><th>EPS</th></tr>");
+        html.append("<tr><th>Cedula</th><th>Nombres</th><th>Apellidos</th><th>Edad</th><th>EPS</th><th>ARL</th><th>Pension</th></tr>");
 
         for (Mensajero mensajero : ListaMensajeros) {
             html.append("<tr>");
