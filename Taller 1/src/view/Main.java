@@ -12,21 +12,22 @@ public class Main {
         boolean app = true, ej = false, action=false;
         String Option, OptionEj, OptionAc;
         Ajedrez Tablero = null;
+        Listas Lista = null;
         while (app) {
             ej = true;
             Option = Menu();
             switch (Option){
-                case "1. ArrayList Simple":
-                    Listas Lista = new Listas(GetDato("Nombre","el nombre de la lista"));
+                case "ArrayList Simple":
+                    Lista = new Listas(GetDato("Nombre","el nombre de la lista"));
                     break;
-                case "2. ArrayList Objetos":
+                case "ArrayList Objetos":
                     break;
-                case "3. ArrayList de ArrayList":
+                case "ArrayList de ArrayList":
                     break;
-                case "4. Ajedrez":
+                case "Ajedrez":
                     Tablero = new Ajedrez();
                     break;
-                case "5. Salir":
+                case "Salir":
                     app=false; ej=false; action=false;
                     break;
             }
@@ -50,7 +51,7 @@ public class Main {
     }
 
     public static String Menu() {
-        String[] options = { "1. ArrayList Simple", "2. ArrayList Objetos", "3. ArrayList de ArrayList", "4. Ajedrez" ,"5. Salir" };
+        String[] options = { "ArrayList Simple", "ArrayList Objetos", "ArrayList de ArrayList", "Ajedrez" ,"Salir" };
         String option = (String) JOptionPane.showInputDialog(null, "Seleccionar un Ejercicio: ", "Menu de Ejercicios: ",
                 JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
         return option;
@@ -60,16 +61,16 @@ public class Main {
     public static String MenuEj(String Opt) {
         String[] options = {};
         switch (Opt){
-            case "1. ArrayList Simple":
-                options = new String[]{"1. ArrayList Simple", "2. ArrayList Objetos", "3. ArrayList de ArrayList", "4. Ajedrez", "5. Salir"};
+            case "ArrayList Simple":
+                options = new String[]{"Llenar el ArrayList", "Adicionar nuevo elemento en posición específica", "Listar el ArrayList", "Borrar elemento de una posición específica", "Borrar un elemento específico", "Volver"};
                 break;
-            case "2. ArrayList Objetos":
-                options = new String[]{"1. ArrayList Simple", "2. ArrayList Objetos", "3. ArrayList de ArrayList", "4. Ajedrez", "5. Salir"};
+            case "ArrayList Objetos":
+                options = new String[]{"Leer archivo plano original", "Mostrarlo en pantalla", "Eliminar partidos que resultado no es empate y mostrar arrayList", "Partidos de futbol donde el ganador fue el equipo local", "Partidos de futbol donde el ganador fue el equipo visitante", "Partidos donde hubo empate", "Partidos donde hubo goleada (diferencia de goles mayor o igual a tres)", "Ingresar información de cada partido y su resultado", "Leer nuevamente el archivo plano inicial y con los adicionados", "Volver"};
                 break;
-            case "3. ArrayList de ArrayList":
-                options = new String[]{"1. ArrayList Simple", "2. ArrayList Objetos", "3. ArrayList de ArrayList", "4. Ajedrez", "5. Salir"};
+            case "ArrayList de ArrayList":
+                options = new String[] {"Cargar el ArrayList-ArrayList", "Eliminar un entero dado", "Mostrar el ArrayList", "Borrar ArrayList vacíos", "Calcular tamaño de cada arrayList", "Adicionar Datos", "Realizar la suma y el promedio de cada fila (ArrayList)", "Poderle adicionar un(s) elementos en una fila(ArrayList) determinado", "Diseñe un ejemplo donde se utilice una ArrayList de ArrayList y dentro de este último un objeto con varios atributos","Volver"};
                 break;
-            case "4. Ajedrez":
+            case "Ajedrez":
                 options = new String[]{"Mostrar Tablero", "Ingrese Posición del Caballo", "Volver",};
                 break;
         }
