@@ -92,8 +92,8 @@ public class Panaderos implements File {
     public void Show() {
         if (!ListaPanaderos.isEmpty()) {
             ShowConsole();
-            ShowPane();
             ShowHtml();
+            ShowPane();
         } else {
             System.out.println("La lista de Panaderos de " + this.Name + " esta vacia");
             JOptionPane.showMessageDialog(null, "La lista de Panaderos de " + this.Name + " esta vacia", "Validación", JOptionPane.ERROR_MESSAGE);

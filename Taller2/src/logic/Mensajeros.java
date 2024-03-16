@@ -150,8 +150,8 @@ public class Mensajeros implements File {
     public void Show() {
         if (!ListaMensajeros.isEmpty()) {
             ShowConsole();
-            ShowPane();
             ShowHtml();
+            ShowPane();
         } else {
             System.out.println("La lista de Mensajeros de " + this.Name + " esta vacia");
             JOptionPane.showMessageDialog(null, "La lista de Mensajeros de " + this.Name + " esta vacia", "Validación", JOptionPane.ERROR_MESSAGE);

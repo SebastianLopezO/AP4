@@ -123,8 +123,8 @@ public class Vendedores implements File {
     public void Show() {
         if (!ListaVendedores.isEmpty()) {
             ShowConsole();
-            ShowPane();
             ShowHtml();
+            ShowPane();
         } else {
             System.out.println("La lista de Vendedores de " + this.Name + " esta vacia");
             JOptionPane.showMessageDialog(null, "La lista de Vendedores de " + this.Name + " esta vacia", "Validación", JOptionPane.ERROR_MESSAGE);
