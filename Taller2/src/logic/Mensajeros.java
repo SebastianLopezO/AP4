@@ -216,16 +216,16 @@ public class Mensajeros implements File {
         int headerLength = header.length();
         int separatorLength = 160; // Longitud de la línea separadora
         int padding = (separatorLength - headerLength) / 2;
-        String separatorLine = BG_BL + WL + Bd + "|"+"-".repeat(separatorLength-2) + "|" + RT;
+        String separatorLine = BG_BL + WL + Bd + "|"+"-".repeat(separatorLength-1) + "|" + RT;
         String endLine = "-".repeat(separatorLength);
 
         // Encabezado centrado
         System.out.println(separatorLine);
-        System.out.printf(BG_BL + WL + Bd + "|%" + (padding - 1) + "s%s%" + (padding-1) + "s|" + RT + "%n", "", header, "");
+        System.out.printf(BG_BL + WL + Bd + "|%" + (padding - 1) + "s%s%" + (padding) + "s|" + RT + "%n", "", header, "");
         System.out.println(separatorLine);
 
         // Columnas
-        System.out.printf(BG_BL + WL + Bd + "|   %-10s| %-25s| %-25s| %-5s| %-25s| %-25s| %-25s   |" + RT + "%n", "Cedula", "Nombres", "Apellidos", "Edad", "EPS", "ARL", "Pension");
+        System.out.printf(BG_BL + WL + Bd + "|   %-10s| %-25s| %-25s| %-6s| %-25s| %-25s| %-25s   |" + RT + "%n", "Cedula", "Nombres", "Apellidos", "Edad", "EPS", "ARL", "Pension");
         System.out.println(separatorLine);
 
         boolean flagClr = true;
@@ -233,7 +233,7 @@ public class Mensajeros implements File {
         // Datos de los vendedores
         for (Mensajero mensajero : ListaMensajeros) {
             String clr = flagClr? BG_GRD + WL: BG_GRL+ WL;
-            System.out.printf(clr + "|   %-10d| %-25s| %-25s| %-5d| %-25s| %-25s| %-25s   |" + RT + "%n",
+            System.out.printf(clr + "|   %-10d| %-25s| %-25s| %-6d| %-25s| %-25s| %-25s   |" + RT + "%n",
                     mensajero.getCedula(),
                     mensajero.getNombres(),
                     mensajero.getApellidos(),
