@@ -98,3 +98,4 @@
 10298;Kai;George;27;Sanitas;AXA Colpatria;Colfondos
 10299;Finn;Lee;23;Cruz Blanca;Colseguros;Protección
 10300;Amethyst;Oneil;21;Sanitas;Suramericana;Colfondos
+10400;Sebastián;López;34;NuevaEPS;Protección;Colmena

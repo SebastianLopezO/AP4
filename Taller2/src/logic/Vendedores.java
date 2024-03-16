@@ -23,13 +23,14 @@ public class Vendedores implements File {
     }
 
     public void Input(){
-        int cedula = GetNum("la cedula para el vendedor");
+        int cedula = GetNum("la cedula del vendedor");
         if(!isExist(cedula)){
-            String nombres = GetDato("nombre","para el vendedor");
-            String apellidos = GetDato("apellido","para el vendedor");
+            String nombres = GetDato("nombre","el vendedor");
+            String apellidos = GetDato("apellido","el vendedor");
             int anosExperiencia = GetNum("los años de experiencia del vendedor");
-            int edad = GetAge("la edad para el vendedor");
-            String eps =  GetDato("EPS","para el vendedor");
+            int edad = GetAge("la edad del vendedor");
+            String eps =  GetOption(UniqueEps(),"la eps del vendedor");
+
             ListaVendedores.add(new Vendedor(cedula, nombres, apellidos, anosExperiencia, edad, eps));
             System.out.println("El Vendedor con la cedula "+cedula+" ha sido agregado");
             JOptionPane.showMessageDialog(null, "El Vendedor con la cedula "+cedula+" ha sido agregado");
@@ -179,6 +180,19 @@ public class Vendedores implements File {
             }
         }
         return null;
+    }
+
+    private ArrayList<String> UniqueEps(){
+        ArrayList<String> ListEPS = new ArrayList<>();
+
+        for(Vendedor vendedor: ListaVendedores){
+            String eps = vendedor.getEps();
+            if(!ListEPS.contains(eps)){
+                ListEPS.add(eps);
+            }
+        }
+
+        return ListEPS;
     }
 
     public void ShowConsole() {

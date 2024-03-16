@@ -24,12 +24,12 @@ public class Panaderos implements File {
     }
 
     public void Input(){
-        int cedula = GetNum("la cedula para el Panadero");
+        int cedula = GetNum("la cedula del Panadero");
         if(!isExist(cedula)){
             String nombres = GetDato("nombre","para el Panadero");
             String apellidos = GetDato("apellido","para el Panadero");
             int anosExperiencia = GetNum("los años de experiencia del Panadero");
-            int edad = GetAge("la edad para el Panadero");
+            int edad = GetAge("la edad del Panadero");
 
             ListaPanaderos.add(new Panadero(cedula, nombres, apellidos, anosExperiencia, edad));
             System.out.println("El Panadero con la cedula "+cedula+" ha sido agregado");

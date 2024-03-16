@@ -29,9 +29,9 @@ public class Mensajeros implements File {
             String apellidos = GetDato("apellido","para el mensajero");
             int anosExperiencia = GetNum("los años de experiencia del mensajero");
             int edad = GetAge("la edad para el mensajero");
-            String eps =  GetDato("EPS","para el mensajero");
-            String arl =  GetDato("Pension","para el mensajero");
-            String pension =  GetDato("Pension","para el mensajero");
+            String eps =  GetOption(UniqueEps(),"la EPS del mensajero");
+            String arl =  GetOption(UniqueARL(),"la ARL del mensajero");
+            String pension =  GetOption(UniquePension(),"la Pension del mensajero");
 
             ListaMensajeros.add(new Mensajero(cedula, nombres, apellidos, edad, eps, pension, arl));
             System.out.println("El Mensajero con la cedula "+cedula+" ha sido agregado");
@@ -209,6 +209,45 @@ public class Mensajeros implements File {
             }
         }
         return null;
+    }
+
+    private ArrayList<String> UniqueEps(){
+        ArrayList<String> ListEPS = new ArrayList<>();
+
+        for(Mensajero mensajero: ListaMensajeros){
+            String eps = mensajero.getEps();
+            if(!ListEPS.contains(eps)){
+                ListEPS.add(eps);
+            }
+        }
+
+        return ListEPS;
+    }
+
+    private ArrayList<String> UniqueARL(){
+        ArrayList<String> ListARL = new ArrayList<>();
+
+        for(Mensajero mensajero: ListaMensajeros){
+            String arl = mensajero.getArl();
+            if(!ListARL.contains(arl)){
+                ListARL.add(arl);
+            }
+        }
+
+        return ListARL;
+    }
+
+    private ArrayList<String> UniquePension(){
+        ArrayList<String> ListPension = new ArrayList<>();
+
+        for(Mensajero mensajero: ListaMensajeros){
+            String pension = mensajero.getPension();
+            if(!ListPension.contains(pension)){
+                ListPension.add(pension);
+            }
+        }
+
+        return ListPension;
     }
 
     public void ShowConsole() {
