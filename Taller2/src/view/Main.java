@@ -80,6 +80,30 @@ public class Main {
                     case "Guardar Vendedores":
                         vendedores.WriteData();
                         break;
+                    case "Cargar Mensajeros":
+                        mensajeros.ReadData();
+                        break;
+                    case "Insertar Mensajero":
+                        mensajeros.Input();
+                        break;
+                    case "Mostrar Mensajeros":
+                        mensajeros.Show();
+                        break;
+                    case "Buscar Mensajero":
+                        mensajeros.SearchMsj();
+                        break;
+                    case "Porcentaje Mensajeros con Pension Porvenir":
+                        mensajeros.perPen("Porvenir");
+                        break;
+                    case "Porcentaje Mensajeros con ARL Colseguros":
+                        mensajeros.perARL("Protección");
+                        break;
+                    case "Porcentaje Mensajeros con EPS Sura":
+                        mensajeros.perEPS("Sura");
+                        break;
+                    case "Guardar Mensajeros":
+                        mensajeros.WriteData();
+                        break;
                     case "Volver":
                         action=false;
                         break;
@@ -119,10 +143,10 @@ public class Main {
                 options = new String[]{"Cargar Vendedores", "Insertar Vendedor", "Mostrar Vendedores", "Buscar Vendedor",  "Porcentaje Vendedores con 2 y 5 años de experiencia", "Porcentaje Vendedores con EPS Sura" ,"Guardar Vendedores", "Volver"};
                 break;
             case "Mensajeros":
-                options = new String[] {"Cargar el ArrayList-ArrayList", "Eliminar un entero dado", "Mostrar el ArrayList", "Borrar ArrayList vacíos", "Calcular tamaño de cada arrayList", "Adicionar Datos", "Realizar la suma y el promedio de cada fila (ArrayList)", "Poderle adicionar un(s) elementos en una fila(ArrayList) determinado", "Diseñe un ejemplo donde se utilice una ArrayList de ArrayList y dentro de este último un objeto con varios atributos","Volver"};
+                options = new String[] {"Cargar Mensajeros", "Insertar Mensajero", "Mostrar Mensajeros", "Buscar Mensajero",  "Porcentaje Mensajeros con ARL Colseguros", "Porcentaje Mensajeros con Pension Porvenir", "Porcentaje Mensajeros con EPS Sura" ,"Guardar Mensajeros", "Volver"};
                 break;
             case "Resumen":
-                options = new String[]{"Mostrar Tablero", "Ingrese Posición del Caballo", "Volver",};
+                options = new String[]{"Volver",};
                 break;
         }
 

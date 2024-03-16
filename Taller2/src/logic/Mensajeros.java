@@ -66,7 +66,7 @@ public class Mensajeros implements File {
 
         System.out.println("Porcentaje de Mensajeros con ARL '" + arl + "': " + per + "%");
         JOptionPane.showMessageDialog(null, "Porcentaje de Mensajeros con ARL '" + arl + "': " + per + "%", "Porcentaje de Mensajeros", JOptionPane.INFORMATION_MESSAGE);
-        FilterEPS(arl);
+        FilterARL(arl);
     }
 
     public void FilterARL(String arl){
@@ -97,7 +97,7 @@ public class Mensajeros implements File {
 
         System.out.println("Porcentaje de Mensajeros con Pension '" + pension + "': " + per + "%");
         JOptionPane.showMessageDialog(null, "Porcentaje de Mensajeros con Pension '" + pension + "': " + per + "%", "Porcentaje de Mensajeros", JOptionPane.INFORMATION_MESSAGE);
-        FilterEPS(pension);
+        FilterPen(pension);
     }
 
     public void FilterPen(String pension){
