@@ -166,16 +166,18 @@ public class Panaderos implements File {
         System.out.println(separatorLine);
 
         boolean flagClr = true;
-        String clr = "";
+
         // Datos de los panaderos
         for (Panadero panadero : ListaPanaderos) {
-            if(flagClr){ clr = BG_GRD + WL; flagClr = false; }else { clr = BG_GRL+ WL; flagClr = true;}
+            String clr = flagClr? BG_GRD + WL: BG_GRL+ WL;
             System.out.printf(clr + "|   %-10d| %-25s| %-25s| %-20d| %-5d   |" + RT + "%n",
                     panadero.getCedula(),
                     panadero.getNombres(),
                     panadero.getApellidos(),
                     panadero.getAnosExperiencia(),
                     panadero.getEdad());
+
+            flagClr = !flagClr;
         }
 
         // Pie de la tabla

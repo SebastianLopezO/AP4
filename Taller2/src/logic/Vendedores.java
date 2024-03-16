@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
 
+import static utility.Clr.*;
+import static utility.Clr.RT;
 import static utility.InputPane.*;
 
 public class Vendedores implements File {
@@ -182,41 +184,53 @@ public class Vendedores implements File {
     public void ShowConsole() {
         String header = String.format("%s de %s", "Lista de Vendedores", this.Name);
         int headerLength = header.length();
-        int separatorLength = 126; // Longitud de la línea separadora
+        int separatorLength = 127; // Longitud de la línea separadora
         int padding = (separatorLength - headerLength) / 2;
-        String separatorLine = "-".repeat(separatorLength);
+        String separatorLine = BG_BL + WL + Bd + "|"+"-".repeat(separatorLength-1) + "|" + RT;
+        String endLine = "-".repeat(separatorLength);
 
         // Encabezado centrado
         System.out.println(separatorLine);
-        System.out.printf("|%" + (padding - 1) + "s%s%" + (padding) + "s|%n", "", header, "");
+        System.out.printf(BG_BL + WL + Bd + "|%" + (padding - 1) + "s%s%" + (padding) + "s|" + RT + "%n", "", header, "");
         System.out.println(separatorLine);
 
         // Columnas
-        System.out.printf("|   %-10s| %-25s| %-25s| %-20s| %-5s| %-25s   |%n", "Cedula", "Nombres", "Apellidos", "Años de Experiencia", "Edad", "EPS");
+        System.out.printf(BG_BL + WL + Bd + "|   %-10s| %-25s| %-25s| %-20s| %-5s| %-25s   |" + RT + "%n", "Cedula", "Nombres", "Apellidos", "Años de Experiencia", "Edad", "EPS");
         System.out.println(separatorLine);
+
+        boolean flagClr = true;
 
         // Datos de los vendedores
         for (Vendedor vendedor : ListaVendedores) {
-            System.out.printf("|   %-10d| %-25s| %-25s| %-20d| %-5d| %-25s   |%n",
+            String clr = flagClr? BG_GRD + WL: BG_GRL+ WL;
+            System.out.printf(clr + "|   %-10d| %-25s| %-25s| %-20d| %-5d| %-25s   |" + RT + "%n",
                     vendedor.getCedula(),
                     vendedor.getNombres(),
                     vendedor.getApellidos(),
                     vendedor.getAnosExperiencia(),
                     vendedor.getEdad(),
                     vendedor.getEps());
+            flagClr = !flagClr;
         }
 
         // Pie de la tabla
-        System.out.println(separatorLine);
+        System.out.println(endLine);
     }
 
     public void ShowPane() {
         StringBuilder html = new StringBuilder();
         html.append("<html><body><table border='1'>");
-        html.append("<tr><th>Cedula</th><th>Nombres</th><th>Apellidos</th><th>Años de Exp</th><th>Edad</th><th>EPS</th></tr>");
+        html.append("<tr style='background-color: #000000; color: #ffffff; font-weight: bold;'>");
+        html.append("<th>Cedula</th><th>Nombres</th><th>Apellidos</th><th>Años de Exp</th><th>Edad</th><th>EPS</th>");
+        html.append("</tr>");
+
+        boolean isGrayDark = true;
 
         for (Vendedor vendedor : ListaVendedores) {
-            html.append("<tr>");
+            // Determinar el color de fondo de la fila
+            String bgColor = isGrayDark ? "#404040" : "#737373";
+
+            html.append("<tr style='background-color: ").append(bgColor).append("; color: #ffffff;'>");
             html.append("<td>").append(vendedor.getCedula()).append("</td>");
             html.append("<td>").append(vendedor.getNombres()).append("</td>");
             html.append("<td>").append(vendedor.getApellidos()).append("</td>");
@@ -224,6 +238,9 @@ public class Vendedores implements File {
             html.append("<td>").append(vendedor.getEdad()).append("</td>");
             html.append("<td>").append(vendedor.getEps()).append("</td>");
             html.append("</tr>");
+
+            // Alternar el color de las filas
+            isGrayDark = !isGrayDark;
         }
 
         html.append("</table></body></html>");

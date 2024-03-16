@@ -9,6 +9,8 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import static utility.Clr.*;
+import static utility.Clr.RT;
 import static utility.InputPane.*;
 
 public class Mensajeros implements File {
@@ -212,22 +214,26 @@ public class Mensajeros implements File {
     public void ShowConsole() {
         String header = String.format("%s de %s", "Lista de Mensajero", this.Name);
         int headerLength = header.length();
-        int separatorLength = 140; // Longitud de la línea separadora
+        int separatorLength = 160; // Longitud de la línea separadora
         int padding = (separatorLength - headerLength) / 2;
-        String separatorLine = "-".repeat(separatorLength);
+        String separatorLine = BG_BL + WL + Bd + "|"+"-".repeat(separatorLength-2) + "|" + RT;
+        String endLine = "-".repeat(separatorLength);
 
         // Encabezado centrado
         System.out.println(separatorLine);
-        System.out.printf("|%" + (padding - 1) + "s%s%" + (padding) + "s|%n", "", header, "");
+        System.out.printf(BG_BL + WL + Bd + "|%" + (padding - 1) + "s%s%" + (padding-1) + "s|" + RT + "%n", "", header, "");
         System.out.println(separatorLine);
 
         // Columnas
-        System.out.printf("|   %-10s| %-25s| %-25s| %-5s| %-25s| %-25s| %-25s   |%n", "Cedula", "Nombres", "Apellidos", "Edad", "EPS", "ARL", "Pension");
+        System.out.printf(BG_BL + WL + Bd + "|   %-10s| %-25s| %-25s| %-5s| %-25s| %-25s| %-25s   |" + RT + "%n", "Cedula", "Nombres", "Apellidos", "Edad", "EPS", "ARL", "Pension");
         System.out.println(separatorLine);
+
+        boolean flagClr = true;
 
         // Datos de los vendedores
         for (Mensajero mensajero : ListaMensajeros) {
-            System.out.printf("|   %-10d| %-25s| %-25s| %-5d| %-25s| %-25s| %-25s   |%n",
+            String clr = flagClr? BG_GRD + WL: BG_GRL+ WL;
+            System.out.printf(clr + "|   %-10d| %-25s| %-25s| %-5d| %-25s| %-25s| %-25s   |" + RT + "%n",
                     mensajero.getCedula(),
                     mensajero.getNombres(),
                     mensajero.getApellidos(),
@@ -235,19 +241,27 @@ public class Mensajeros implements File {
                     mensajero.getEps(),
                     mensajero.getArl(),
                     mensajero.getPension());
+            flagClr = !flagClr;
         }
 
         // Pie de la tabla
-        System.out.println(separatorLine);
+        System.out.println(endLine);
     }
 
     public void ShowPane() {
         StringBuilder html = new StringBuilder();
         html.append("<html><body><table border='1'>");
-        html.append("<tr><th>Cedula</th><th>Nombres</th><th>Apellidos</th><th>Edad</th><th>EPS</th><th>ARL</th><th>Pension</th></tr>");
+        html.append("<tr style='background-color: #000000; color: #ffffff; font-weight: bold;'>");
+        html.append("<th>Cedula</th><th>Nombres</th><th>Apellidos</th><th>Edad</th><th>EPS</th><th>ARL</th><th>Pension</th>");
+        html.append("</tr>");
+
+        boolean isGrayDark = true;
 
         for (Mensajero mensajero : ListaMensajeros) {
-            html.append("<tr>");
+            // Determinar el color de fondo de la fila
+            String bgColor = isGrayDark ? "#404040" : "#737373";
+
+            html.append("<tr style='background-color: ").append(bgColor).append("; color: #ffffff;'>");
             html.append("<td>").append(mensajero.getCedula()).append("</td>");
             html.append("<td>").append(mensajero.getNombres()).append("</td>");
             html.append("<td>").append(mensajero.getApellidos()).append("</td>");
@@ -256,6 +270,9 @@ public class Mensajeros implements File {
             html.append("<td>").append(mensajero.getArl()).append("</td>");
             html.append("<td>").append(mensajero.getPension()).append("</td>");
             html.append("</tr>");
+
+            // Alternar el color de las filas
+            isGrayDark = !isGrayDark;
         }
 
         html.append("</table></body></html>");
