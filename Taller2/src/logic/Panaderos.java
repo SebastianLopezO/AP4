@@ -3,6 +3,7 @@ package logic;
 import bean.File;
 import bean.Panadero;
 import bean.Vendedor;
+import utility.Html;
 
 import javax.swing.*;
 import java.io.*;
@@ -92,6 +93,7 @@ public class Panaderos implements File {
         if (!ListaPanaderos.isEmpty()) {
             ShowConsole();
             ShowPane();
+            ShowHtml();
         } else {
             System.out.println("La lista de Panaderos de " + this.Name + " esta vacia");
             JOptionPane.showMessageDialog(null, "La lista de Panaderos de " + this.Name + " esta vacia", "Validación", JOptionPane.ERROR_MESSAGE);
@@ -147,6 +149,71 @@ public class Panaderos implements File {
         }
         return null;
     }
+
+    public String ExportWorkerHtml(){
+        String html = "";
+        html += "<table border='1'>";
+
+        // Encabezado de la tabla en negro con letra blanca y negrita
+        html += "<tr style='background-color: #000000; color: #ffffff; font-weight: bold;'>";
+        html += "<th>Cedula</th><th>Nombres</th><th>Apellidos</th><th>Años de Exp</th><th>Edad</th>";
+        html += "</tr>";
+
+        boolean isGrayDark = true;
+
+        for (Panadero panadero : ListaPanaderos) {
+            // Determinar el color de fondo de la fila
+            String bgColor = isGrayDark ? "#404040" : "#737373";
+
+            html += "<tr style='background-color: " + bgColor + "; color: #ffffff;'>";
+            html += "<td>" + panadero.getCedula() + "</td>";
+            html += "<td>" + panadero.getNombres() + "</td>";
+            html += "<td>" + panadero.getApellidos() + "</td>";
+            html += "<td>" + panadero.getAnosExperiencia() + "</td>";
+            html += "<td>" + panadero.getEdad() + "</td>";
+            html += "</tr>";
+
+            // Alternar el color de las filas
+            isGrayDark = !isGrayDark;
+        }
+
+        html += "</table>";
+        return html;
+    }
+
+    public void ShowHtml(){
+        String html = "";
+        html += "<html><body><table border='1'>";
+
+        // Encabezado de la tabla en negro con letra blanca y negrita
+        html += "<tr style='background-color: #000000; color: #ffffff; font-weight: bold;'>";
+        html += "<th>Cedula</th><th>Nombres</th><th>Apellidos</th><th>Años de Exp</th><th>Edad</th>";
+        html += "</tr>";
+
+        boolean isGrayDark = true;
+
+        for (Panadero panadero : ListaPanaderos) {
+            // Determinar el color de fondo de la fila
+            String bgColor = isGrayDark ? "#404040" : "#737373";
+
+            html += "<tr style='background-color: " + bgColor + "; color: #ffffff;'>";
+            html += "<td>" + panadero.getCedula() + "</td>";
+            html += "<td>" + panadero.getNombres() + "</td>";
+            html += "<td>" + panadero.getApellidos() + "</td>";
+            html += "<td>" + panadero.getAnosExperiencia() + "</td>";
+            html += "<td>" + panadero.getEdad() + "</td>";
+            html += "</tr>";
+
+            // Alternar el color de las filas
+            isGrayDark = !isGrayDark;
+        }
+
+        html += "</table></body></html>";
+        Html File = new Html("Panaderos","PanPan");
+        File.AddBody(html);
+        File.Export("Panaderos");
+    }
+
 
     public void ShowConsole() {
         String header = String.format("%s de %s", "Lista de Panaderos", this.Name);

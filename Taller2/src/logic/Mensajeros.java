@@ -3,6 +3,7 @@ package logic;
 import bean.File;
 import bean.Mensajero;
 import bean.Vendedor;
+import utility.Html;
 
 import javax.swing.*;
 import java.io.*;
@@ -150,6 +151,7 @@ public class Mensajeros implements File {
         if (!ListaMensajeros.isEmpty()) {
             ShowConsole();
             ShowPane();
+            ShowHtml();
         } else {
             System.out.println("La lista de Mensajeros de " + this.Name + " esta vacia");
             JOptionPane.showMessageDialog(null, "La lista de Mensajeros de " + this.Name + " esta vacia", "Validación", JOptionPane.ERROR_MESSAGE);
@@ -175,19 +177,18 @@ public class Mensajeros implements File {
     public void ShowPaneMsj(int cedula) {
         Mensajero mensajero = Search(cedula);
         if (mensajero != null) {
-            StringBuilder html = new StringBuilder();
-            html.append("<html><body>");
-            html.append("<h2>Datos del Vendedor</h2>");
-            html.append("<p><b>Cedula:</b> ").append(mensajero.getCedula()).append("</p>");
-            html.append("<p><b>Nombres:</b> ").append(mensajero.getNombres()).append("</p>");
-            html.append("<p><b>Apellidos:</b> ").append(mensajero.getApellidos()).append("</p>");
-            html.append("<p><b>Edad:</b> ").append(mensajero.getEdad()).append("</p>");
-            html.append("<p><b>EPS:</b> ").append(mensajero.getEps()).append("</p>");
-            html.append("<p><b>ARL:</b> ").append(mensajero.getArl()).append("</p>");
-            html.append("<p><b>Pension:</b> ").append(mensajero.getPension()).append("</p>");
-            html.append("</body></html>");
+            String html = "<html><body>" +
+                    "<h2>Datos del Vendedor</h2>" +
+                    "<p><b>Cedula:</b> " + mensajero.getCedula() + "</p>" +
+                    "<p><b>Nombres:</b> " + mensajero.getNombres() + "</p>" +
+                    "<p><b>Apellidos:</b> " + mensajero.getApellidos() + "</p>" +
+                    "<p><b>Edad:</b> " + mensajero.getEdad() + "</p>" +
+                    "<p><b>EPS:</b> " + mensajero.getEps() + "</p>" +
+                    "<p><b>ARL:</b> " + mensajero.getArl() + "</p>" +
+                    "<p><b>Pension:</b> " + mensajero.getPension() + "</p>" +
+                    "</body></html>";
 
-            JOptionPane.showMessageDialog(null, html.toString(), "Datos del Mensajero", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, html, "Datos del Mensajero", JOptionPane.INFORMATION_MESSAGE);
         } else {
             JOptionPane.showMessageDialog(null, "No se encontró un mensajero con la cédula especificada.", "Error", JOptionPane.ERROR_MESSAGE);
         }
@@ -249,6 +250,71 @@ public class Mensajeros implements File {
 
         return ListPension;
     }
+
+    public String ExportWorkerHtml(){
+        String html = "";
+        html+="<table border='1'>";
+        html+="<tr style='background-color: #000000; color: #ffffff; font-weight: bold;'>";
+        html+="<th>Cedula</th><th>Nombres</th><th>Apellidos</th><th>Edad</th><th>EPS</th><th>ARL</th><th>Pension</th>";
+        html+="</tr>";
+
+        boolean isGrayDark = true;
+
+        for (Mensajero mensajero : ListaMensajeros) {
+            // Determinar el color de fondo de la fila
+            String bgColor = isGrayDark ? "#404040" : "#737373";
+
+            html += "<tr style='background-color: "+bgColor+"; color: #ffffff;'>";
+            html += "<td>"+mensajero.getCedula()+"</td>";
+            html += "<td>"+mensajero.getApellidos()+"</td>";
+            html += "<td>"+mensajero.getEdad()+"</td>";
+            html += "<td>"+mensajero.getNombres()+"</td>";
+            html += "<td>"+mensajero.getEps()+"</td>";
+            html += "<td>"+mensajero.getArl()+"</td>";
+            html += "<td>"+mensajero.getPension()+"</td>";
+            html += "</tr>";
+
+            // Alternar el color de las filas
+            isGrayDark = !isGrayDark;
+        }
+
+        html += "</table>";
+        return html;
+    }
+
+    public void ShowHtml(){
+        String html = "";
+        html+="<html><body><table border='1'>";
+        html+="<tr style='background-color: #000000; color: #ffffff; font-weight: bold;'>";
+        html+="<th>Cedula</th><th>Nombres</th><th>Apellidos</th><th>Edad</th><th>EPS</th><th>ARL</th><th>Pension</th>";
+        html+="</tr>";
+
+        boolean isGrayDark = true;
+
+        for (Mensajero mensajero : ListaMensajeros) {
+            // Determinar el color de fondo de la fila
+            String bgColor = isGrayDark ? "#404040" : "#737373";
+
+            html += "<tr style='background-color: "+bgColor+"; color: #ffffff;'>";
+            html += "<td>"+mensajero.getCedula()+"</td>";
+            html += "<td>"+mensajero.getApellidos()+"</td>";
+            html += "<td>"+mensajero.getEdad()+"</td>";
+            html += "<td>"+mensajero.getNombres()+"</td>";
+            html += "<td>"+mensajero.getEps()+"</td>";
+            html += "<td>"+mensajero.getArl()+"</td>";
+            html += "<td>"+mensajero.getPension()+"</td>";
+            html += "</tr>";
+
+            // Alternar el color de las filas
+            isGrayDark = !isGrayDark;
+        }
+
+        html += "</table></body></html>";
+        Html File = new Html("Mensajeros","PanPan");
+        File.AddBody(html);
+        File.Export("Mensajeros");
+    }
+
 
     public void ShowConsole() {
         String header = String.format("%s de %s", "Lista de Mensajero", this.Name);

@@ -2,6 +2,7 @@ package logic;
 
 import bean.File;
 import bean.Vendedor;
+import utility.Html;
 
 import javax.swing.*;
 import java.io.*;
@@ -123,6 +124,7 @@ public class Vendedores implements File {
         if (!ListaVendedores.isEmpty()) {
             ShowConsole();
             ShowPane();
+            ShowHtml();
         } else {
             System.out.println("La lista de Vendedores de " + this.Name + " esta vacia");
             JOptionPane.showMessageDialog(null, "La lista de Vendedores de " + this.Name + " esta vacia", "Validación", JOptionPane.ERROR_MESSAGE);
@@ -147,18 +149,17 @@ public class Vendedores implements File {
     public void ShowPaneVen(int cedula) {
         Vendedor vendedor = Search(cedula);
         if (vendedor != null) {
-            StringBuilder html = new StringBuilder();
-            html.append("<html><body>");
-            html.append("<h2>Datos del Vendedor</h2>");
-            html.append("<p><b>Cedula:</b> ").append(vendedor.getCedula()).append("</p>");
-            html.append("<p><b>Nombres:</b> ").append(vendedor.getNombres()).append("</p>");
-            html.append("<p><b>Apellidos:</b> ").append(vendedor.getApellidos()).append("</p>");
-            html.append("<p><b>Edad:</b> ").append(vendedor.getEdad()).append("</p>");
-            html.append("<p><b>Años de Experiencia:</b> ").append(vendedor.getAnosExperiencia()).append("</p>");
-            html.append("<p><b>EPS:</b> ").append(vendedor.getEps()).append("</p>");
-            html.append("</body></html>");
+            String html = "<html><body>" +
+                    "<h2>Datos del Vendedor</h2>" +
+                    "<p><b>Cedula:</b> " + vendedor.getCedula() + "</p>" +
+                    "<p><b>Nombres:</b> " + vendedor.getNombres() + "</p>" +
+                    "<p><b>Apellidos:</b> " + vendedor.getApellidos() + "</p>" +
+                    "<p><b>Edad:</b> " + vendedor.getEdad() + "</p>" +
+                    "<p><b>Años de Experiencia:</b> " + vendedor.getAnosExperiencia() + "</p>" +
+                    "<p><b>EPS:</b> " + vendedor.getEps() + "</p>" +
+                    "</body></html>";
 
-            JOptionPane.showMessageDialog(null, html.toString(), "Datos del Vendedor", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, html, "Datos del Vendedor", JOptionPane.INFORMATION_MESSAGE);
         } else {
             JOptionPane.showMessageDialog(null, "No se encontró un vendedor con la cédula especificada.", "Error", JOptionPane.ERROR_MESSAGE);
         }
@@ -193,6 +194,68 @@ public class Vendedores implements File {
         }
 
         return ListEPS;
+    }
+
+    public String ExportWorkerHtml(){
+        String html = "";
+        html += "<table border='1'>";
+        html += "<tr style='background-color: #000000; color: #ffffff; font-weight: bold;'>";
+        html += "<th>Cedula</th><th>Nombres</th><th>Apellidos</th><th>Años de Exp</th><th>Edad</th><th>EPS</th>";
+        html += "</tr>";
+
+        boolean isGrayDark = true;
+
+        for (Vendedor vendedor : ListaVendedores) {
+            // Determinar el color de fondo de la fila
+            String bgColor = isGrayDark ? "#404040" : "#737373";
+
+            html += "<tr style='background-color: " + bgColor + "; color: #ffffff;'>";
+            html += "<td>" + vendedor.getCedula() + "</td>";
+            html += "<td>" + vendedor.getNombres() + "</td>";
+            html += "<td>" + vendedor.getApellidos() + "</td>";
+            html += "<td>" + vendedor.getAnosExperiencia() + "</td>";
+            html += "<td>" + vendedor.getEdad() + "</td>";
+            html += "<td>" + vendedor.getEps() + "</td>";
+            html += "</tr>";
+
+            // Alternar el color de las filas
+            isGrayDark = !isGrayDark;
+        }
+
+        html += "</table>";
+        return html;
+    }
+
+    public void ShowHtml(){
+        String html = "";
+        html += "<html><body><table border='1'>";
+        html += "<tr style='background-color: #000000; color: #ffffff; font-weight: bold;'>";
+        html += "<th>Cedula</th><th>Nombres</th><th>Apellidos</th><th>Años de Exp</th><th>Edad</th><th>EPS</th>";
+        html += "</tr>";
+
+        boolean isGrayDark = true;
+
+        for (Vendedor vendedor : ListaVendedores) {
+            // Determinar el color de fondo de la fila
+            String bgColor = isGrayDark ? "#404040" : "#737373";
+
+            html += "<tr style='background-color: " + bgColor + "; color: #ffffff;'>";
+            html += "<td>" + vendedor.getCedula() + "</td>";
+            html += "<td>" + vendedor.getNombres() + "</td>";
+            html += "<td>" + vendedor.getApellidos() + "</td>";
+            html += "<td>" + vendedor.getAnosExperiencia() + "</td>";
+            html += "<td>" + vendedor.getEdad() + "</td>";
+            html += "<td>" + vendedor.getEps() + "</td>";
+            html += "</tr>";
+
+            // Alternar el color de las filas
+            isGrayDark = !isGrayDark;
+        }
+
+        html += "</table></body></html>";
+        Html File = new Html("Vendedores","PanPan");
+        File.AddBody(html);
+        File.Export("Vendedores");
     }
 
     public void ShowConsole() {

@@ -4,7 +4,9 @@ package view;
 import logic.Mensajeros;
 import logic.Panaderos;
 import logic.Vendedores;
+import utility.Html;
 
+import javax.management.ObjectName;
 import javax.swing.*;
 
 public class Main {
@@ -32,6 +34,8 @@ public class Main {
                 case "Resumen":
                     break;
                 case "Salir":
+                    System.out.println("Hasta luego, vuelva pronto");
+                    Export(vendedores, mensajeros, panaderos);
                     app = false;
                     action = false;
                     break;
@@ -154,5 +158,14 @@ public class Main {
                 JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
         return option;
 
+    }
+
+    public static void Export(Vendedores vendedores, Mensajeros mensajeros, Panaderos panaderos) {
+        //Archivo
+        Html FileProyect = new Html("Trabajadores","PanPan");
+        FileProyect.AddBody(vendedores.ExportWorkerHtml());
+        FileProyect.AddBody(mensajeros.ExportWorkerHtml());
+        FileProyect.AddBody(panaderos.ExportWorkerHtml());
+        FileProyect.Export("Memory");
     }
 }
