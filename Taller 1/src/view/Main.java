@@ -30,6 +30,9 @@ public class Main {
                 case "Salir":
                     app=false; ej=false; action=false;
                     break;
+                default:
+                    ej=false; action=false;
+                    break;
             }
 
             while (ej){
@@ -54,6 +57,10 @@ public class Main {
         String[] options = { "ArrayList Simple", "ArrayList Objetos", "ArrayList de ArrayList", "Ajedrez" ,"Salir" };
         String option = (String) JOptionPane.showInputDialog(null, "Seleccionar un Ejercicio: ", "Menu de Ejercicios: ",
                 JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+
+        /*Cancelar*/
+        option = (option == null) ? "" : option;
+
         return option;
 
     }
@@ -77,6 +84,8 @@ public class Main {
 
         String option = (String) JOptionPane.showInputDialog(null, "Seleccionar un Ejercicio: ", "Menu de Ejercicios: ",
                 JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+        /*Cancelar*/
+        option = (option == null) ? "" : option;
         return option;
 
     }
