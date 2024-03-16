@@ -154,7 +154,7 @@ public class Panaderos implements File {
         int separatorLength = 100; // Longitud de la línea separadora
         int padding = (separatorLength - headerLength) / 2;
         String separatorLine = BG_BL + WL + Bd + "|"+"-".repeat(separatorLength-1) + "|" + RT;
-        String endLine = "-".repeat(separatorLength);
+        String endLine = "¯".repeat(separatorLength);
 
         // Encabezado centrado
         System.out.println(separatorLine);
