@@ -92,7 +92,7 @@ public class MenuNodosDos extends Menu {
                         msg("El patron no concuerda!");
                     break;
 
-                case "Añadir nuevo nodo automaticamente": // crear automaticamente
+                case "Añadir nuevo nodo automaticamente":
                     nodosDos.NewNodo();
                     break;
 

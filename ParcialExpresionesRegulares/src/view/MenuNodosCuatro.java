@@ -47,11 +47,11 @@ public class MenuNodosCuatro extends Menu {
 
                 case "Ingresar un nodo nuevo":
                     String dato1 = ValidationsRegex("[A-Z]\\d{3}\\s\\d{3}-\\d{6}",
-                            "Ingrese el dato 1 (X### ###-###### , X representa una letra mayuscula, # representa un digito)");
+                            "Ingrese el dato 1 (X### ###-###### , X: letra mayuscula, #:Digito)");
                     String dato2 = ValidationsRegex("1\\d{3}[A-Z]{6}[3-9]{2}",
-                            "Ingrese el dato 2 (1###XXXXXX[3-9][3-9] , X representa una letra mayuscula, # representa un digito, [3-9] un numero entre el 3 y el 9)");
+                            "Ingrese el dato 2 (1###XXXXXX[3-9][3-9] , X: letra mayuscula, #:digito, [3-9]: numero entre el 3 y el 9)");
                     String codigo = ValidationsRegex("E-ISSN\\s\\d{4}-\\d{4}",
-                            "Ingrese el codigo (E-ISSN ####-#### , # representa un digito)");
+                            "Ingrese el codigo (E-ISSN ####-#### , #:digito)");
                     nodosCuatro.getArray().add(new Nodo(dato1, dato2, codigo));
                     break;
                 case "Buscar codigos con 2 numeros iguales seguidos":

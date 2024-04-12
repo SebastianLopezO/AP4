@@ -103,10 +103,10 @@ public class NodosUno {
         if (p.matcher(cadena).matches()) {
             int[] nms = Arrays.stream(cadena.split(" ")).mapToInt(Integer::parseInt).toArray();
             if (nms[0] < nms[1] && nms[1] < nms[2]) {
-                System.out.println(BG_G + "[!] Cadena valida: " + Arrays.toString(nms) + RT);
+                System.out.println(BG_G + "[!] Cadena Valida: " + Arrays.toString(nms) + RT);
                 return true;
             }
-            System.out.println(BG_R+"[x] Cadena invalida: " + Arrays.toString(nms) + RT);
+            System.out.println(BG_R+"[x] Cadena Invalida: " + Arrays.toString(nms) + RT);
         }
         return false;
     }

@@ -68,7 +68,7 @@ public class MenuTarjetas extends Menu {
                     String nombre = ValidateRegex(".+", "Ingrese el nombre del dueño de la tarjeta").trim();
                     String apellido = ValidateRegex(".+", "Ingrese el apellido del dueño de la tarjeta").trim();
                     tarjetas.Insert(nombre, apellido, numero, fecha, codigo, tipo);
-                    msg("Se a ingresado exitosamente");
+                    msg("Se ha ingresado exitosamente la tarjeta de Credito");
                     break;
 
                 default:
