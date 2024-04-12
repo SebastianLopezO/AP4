@@ -76,7 +76,7 @@ public class Tarjetas {
     public String CardsYear(String year) {
         Pattern patron = Pattern.compile("/" + year);
         StringBuilder html = new StringBuilder();
-        html.append("<html><body><h3>Tarjetas MasterCard y Visa en el año "+year+"</h3><table border='1'>");
+        html.append("<html><body><h3>Tarjetas MasterCard y Visa en el a&#241;o "+year+"</h3><table border='1'>");
         html.append("<tr style='background-color: #000000; color: #ffffff; font-weight: bold;'>");
         html.append("<th>Id</th><th>Codigo</th><th>Fecha</th><th>Tipo</th><th>Nombre</th><th>Apellido</th>");
         html.append("</tr>");
