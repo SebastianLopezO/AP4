@@ -1,0 +1,45 @@
+1.	Crear un ArrayList y utilizar expresiones regulares para los siguientes requerimientos: - La cantidad de nodos debe ser un número primo.
+-	Almacenar un objeto que incluya 3 números (expresión regular), garantizar que el segundo y tercer número sean mayores que el anterior, por ejemplo: 3 5 8, algo errado será 3 2 5.
+-	Los números almacenados en cada nodo deben ir incrementando, es decir, el primer nodo tiene números de un dígito (expresión regular), el segundo nodo de 2 dígitos (expresión regular) y así sucesivamente.
+
+Después de creada, recorrerlo y concatenar el promedio de los valores almacenados en cada nodo, pero iniciando el recorrido con el primer nodo, el último, el segundo, el penúltimo y así sucesivamente.  Tener en cuenta que cuando se llegue al centro se debe también concatenar ese valor.
+
+2.	Crear un ArrayList donde se almacene:
+•	En el primer nodo un ArrayList de 3 nodos, en el segundo nodo otro ArrayList de 5 nodos, en el tercer nodo otro ArrayList de 7 nodos y así sucesivamente.
+•	En cada nodo almacenar del ArrayList principal pedir un número y almacenar en el ArrayList interno solamente números menores que el pedido (expresión regular).
+•	Buscar en los ArrayList interno por medio de una expresión regular cuál es el número mayor de todos e imprimirlo.
+ 	EJERCICIOS EXPRESIONES REGULARES 	Codigo 	ING01189
+		Asignatura 	Taller de Algoritmos y programación 4
+		Fecha
+
+3.	Crear una ArrayList que almacene:
+•	Número de cédula (no se permite puntos ni comas (expresión regular)).
+•	Un JOptionPane con la siguiente lista (Docente de Planta, Docente Ocasional, Docente de Cátedra).
+•	Fecha (dd-mm-yyyy (expresión regular)).
+•	Buscar e imprimir el porcentaje de docentes de planta, docentes ocasionales y docentes de cátedra.
+•	Cantidad de veces que se equivocó el usuario ingresando el número de cédula, sin cumplir con la expresión regular.
+•	Buscar (expresión regular) y almacenar en otro ArrayList los docentes de cátedra que almacenaron la fecha con el mes de septiembre.
+
+4.	Crear un ArrayList que almacene en cada nodo:
+•	Un dato donde la primera sea una letra mayúscula, seguida de 3 números o cifras o dígitos, seguido de un espacio, nuevamente 3 números, el signo "-" y finalice con 6 números (expresión regular).
+•	Un dato que inicie con 4 números donde el primero es el 1, seguido de 6 letras en mayúscula y finaliza con 2 número entre el 3 y el 9 (expresión regular).
+•	Un código que inicie con la letra "E" en mayúscula, seguida del signo "-", seguido de las letras en mayúscula "ISSN", siguiendo un espacio y 4 números, el signo "-" y finalizando con 4 números (expresión regular).
+•	Recorrer el ArrayList, buscar (expresión regular) el código o número que incluya 2 números iguales seguidos y adicionar el valor completo en otro ArrayList.
+
+5.	Crear un ArrayList que almacene tarjetas de crédito con la siguiente información:
+•	Tipo: MasterCard o Visa. (Expresión regular).
+•	Número: Permite solamente 16 números (Expresión regular).
+•	Fecha: (mm/yy) (Expresión regular).
+•	Nombre: Solo mayúsculas (Expresión regular).
+•	Apellido: Solo mayúsculas (Expresión regular).
+•	Código de verificación: Solo 3 números (Expresión regular).
+•	Después de almacenar la información, buscar (expresión regular) las tarjetas MasterCard y almacenarlas en otro ArrayList, lo mismo para las Visa.
+•	En cada nuevo ArrayList buscar (expresión regular) las tarjetas que tienen como año determinado -Ej: 21- (expresión regular) y listarlas por consola.
+ 	EJERCICIOS EXPRESIONES REGULARES 	Code 	ING01189
+		Course 	Taller de Algoritmos y programación 4
+		Date
+
+Observaciones:
+- Enviar código java al correo.
+- Lo pueden hacer en parejas
+- Exponen el algoritmo y programa en ejecución de cada punto
