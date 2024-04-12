@@ -1,5 +1,6 @@
 package logic;
 
+
 import bean.TarjetaCredito;
 import utility.FileManager;
 
@@ -133,56 +134,100 @@ public class Tarjetas {
     }
 
     public String ShowCards() {
-        String s = "--------MASTERCARD---------\n";
+        StringBuilder html = new StringBuilder();
+        html.append("<html><body><h3>Tarjetas MasterCard y Visa</h3><table border='1'>");
+        html.append("<tr style='background-color: #000000; color: #ffffff; font-weight: bold;'>");
+        html.append("<th>Id</th><th>Numero</th><th>Fecha</th><th>Tipo</th><th>Nombre</th><th>Apellido</th>");
+        html.append("</tr>");
+
+        boolean isGrayDark = true;
+        String bgColor = isGrayDark ? "#404040" : "#737373";
+
+        html.append("<tr style='background-color: ").append(bgColor).append("; color: #ffffff;'>").append("<tr><td colspan='8'>").append("MASTERCARD").append("</td>").append("</tr>");
         for (TarjetaCredito tarjetaCredito : Tarjetas_MasterCard) {
-            s += "\nNumero: " + tarjetaCredito.getNumero() +
-                    "\nFecha: " + tarjetaCredito.getFecha() +
-                    "\nCodigo: " + tarjetaCredito.getCodigo() +
-                    "\nTipo: " + tarjetaCredito.getTipo() +
-                    "\nNombre: " + tarjetaCredito.getNombre() +
-                    "\npellido: " + tarjetaCredito.getApellido() + "\n\n";
+            bgColor = isGrayDark ? "#404040" : "#737373";
+
+            html.append("<tr style='background-color: ").append(bgColor).append("; color: #ffffff;'>");
+            html.append("<td>").append(tarjetaCredito.getNumero()).append("</td>");
+            html.append("<td>").append(tarjetaCredito.getFecha()).append("</td>");
+            html.append("<td>").append(tarjetaCredito.getCodigo()).append("</td>");
+            html.append("<td>").append(tarjetaCredito.getTipo()).append("</td>");
+            html.append("<td>").append(tarjetaCredito.getNombre()).append("</td>");
+            html.append("<td>").append(tarjetaCredito.getApellido()).append("</td>");
+            html.append("</tr>");
+
+            isGrayDark = !isGrayDark;
 
         }
-        s += "------------VISA--------------\n";
+        bgColor = isGrayDark ? "#404040" : "#737373";
+        html.append("<tr style='background-color: ").append(bgColor).append("; color: #ffffff;'>").append("<tr><td colspan='8'>").append("VISA").append("</td>").append("</tr>");
         for (TarjetaCredito tarjetaCredito : Tarjetas_Visa) {
-            s += "\nNumero: " + tarjetaCredito.getNumero() +
-                    "\nFecha: " + tarjetaCredito.getFecha() +
-                    "\nCodigo: " + tarjetaCredito.getCodigo() +
-                    "\nTipo: " + tarjetaCredito.getTipo() +
-                    "\nNombre: " + tarjetaCredito.getNombre() +
-                    "\npellido: " + tarjetaCredito.getApellido() + "\n\n";
+            bgColor = isGrayDark ? "#404040" : "#737373";
 
+            html.append("<tr style='background-color: ").append(bgColor).append("; color: #ffffff;'>");
+            html.append("<td>").append(tarjetaCredito.getNumero()).append("</td>");
+            html.append("<td>").append(tarjetaCredito.getFecha()).append("</td>");
+            html.append("<td>").append(tarjetaCredito.getCodigo()).append("</td>");
+            html.append("<td>").append(tarjetaCredito.getTipo()).append("</td>");
+            html.append("<td>").append(tarjetaCredito.getNombre()).append("</td>");
+            html.append("<td>").append(tarjetaCredito.getApellido()).append("</td>");
+            html.append("</tr>");
+
+            isGrayDark = !isGrayDark;
         }
-        return s;
+        return html.toString();
     }
 
-    public String ShowMasterCard() { // Mostrar todas las tarjetas mastercard
-        String s = "--------MASTERCARD---------\n";
-        for (TarjetaCredito tarjetaCredito : Tarjetas_MasterCard) {// recorro el arraylist tarjetas_mastercard agregando
-            // todas las tarjetas a un string
-            s += "\nNumero: " + tarjetaCredito.getNumero() +
-                    "\nFecha: " + tarjetaCredito.getFecha() +
-                    "\nCodigo: " + tarjetaCredito.getCodigo() +
-                    "\nTipo: " + tarjetaCredito.getTipo() +
-                    "\nNombre: " + tarjetaCredito.getNombre() +
-                    "\npellido: " + tarjetaCredito.getApellido() + "\n\n";
+    public String ShowMasterCard() {
+        StringBuilder html = new StringBuilder();
+        html.append("<html><body><h3>Tarjetas MasterCard</h3><table border='1'>");
+        html.append("<tr style='background-color: #000000; color: #ffffff; font-weight: bold;'>");
+        html.append("<th>Id</th><th>Numero</th><th>Fecha</th><th>Tipo</th><th>Nombre</th><th>Apellido</th>");
+        html.append("</tr>");
 
+        boolean isGrayDark = true;
+
+        for (TarjetaCredito tarjetaCredito : Tarjetas_MasterCard) {
+            String bgColor = isGrayDark ? "#404040" : "#737373";
+
+            html.append("<tr style='background-color: ").append(bgColor).append("; color: #ffffff;'>");
+            html.append("<td>").append(tarjetaCredito.getNumero()).append("</td>");
+            html.append("<td>").append(tarjetaCredito.getFecha()).append("</td>");
+            html.append("<td>").append(tarjetaCredito.getCodigo()).append("</td>");
+            html.append("<td>").append(tarjetaCredito.getTipo()).append("</td>");
+            html.append("<td>").append(tarjetaCredito.getNombre()).append("</td>");
+            html.append("<td>").append(tarjetaCredito.getApellido()).append("</td>");
+            html.append("</tr>");
+
+            isGrayDark = !isGrayDark;
         }
-        return s;
+       return html.toString();
     }
 
-    public String ShowVisa() { // Mostrar todas las tarjetas visa
-        String s = "------------VISA--------------\n";
-        for (TarjetaCredito tarjetaCredito : Tarjetas_Visa) {
-            s += "\nNumero: " + tarjetaCredito.getNumero() +
-                    "\nFecha: " + tarjetaCredito.getFecha() +
-                    "\nCodigo: " + tarjetaCredito.getCodigo() +
-                    "\nTipo: " + tarjetaCredito.getTipo() +
-                    "\nNombre: " + tarjetaCredito.getNombre() +
-                    "\npellido: " + tarjetaCredito.getApellido() + "\n\n";
+    public String ShowVisa() {
+        StringBuilder html = new StringBuilder();
+        html.append("<html><body><h3>Tarjetas Visas</h3><table border='1'>");
+        html.append("<tr style='background-color: #000000; color: #ffffff; font-weight: bold;'>");
+        html.append("<th>Id</th><th>Numero</th><th>Fecha</th><th>Tipo</th><th>Nombre</th><th>Apellido</th>");
+        html.append("</tr>");
 
+        boolean isGrayDark = true;
+
+        for (TarjetaCredito tarjetaCredito : Tarjetas_Visa) {
+            String bgColor = isGrayDark ? "#404040" : "#737373";
+
+            html.append("<tr style='background-color: ").append(bgColor).append("; color: #ffffff;'>");
+            html.append("<td>").append(tarjetaCredito.getNumero()).append("</td>");
+            html.append("<td>").append(tarjetaCredito.getFecha()).append("</td>");
+            html.append("<td>").append(tarjetaCredito.getCodigo()).append("</td>");
+            html.append("<td>").append(tarjetaCredito.getTipo()).append("</td>");
+            html.append("<td>").append(tarjetaCredito.getNombre()).append("</td>");
+            html.append("<td>").append(tarjetaCredito.getApellido()).append("</td>");
+            html.append("</tr>");
+
+            isGrayDark = !isGrayDark;
         }
-        return s;
+        return html.toString();
     }
 
 }

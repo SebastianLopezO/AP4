@@ -44,20 +44,20 @@ public class MenuTarjetas extends Menu {
             switch (opt) {
 
                 case "Mostrar Tarjetas de Credito":
-                    msgScroll(tarjetas.ShowCards());
+                    msgHtml(tarjetas.ShowCards());
                     break;
 
                 case "Mostrar Tarjetas de Credito MasterCard":
-                    msgScroll(tarjetas.ShowMasterCard());
+                    msgHtml(tarjetas.ShowMasterCard());
                     break;
 
                 case "Mostrar Tarjetas de Credito Visa":
-                    msgScroll(tarjetas.ShowVisa());
+                    msgHtml(tarjetas.ShowVisa());
                     break;
 
                 case "Mostrar Tarjetas de Credito por un Año determinado":
                     String Year = ValidateRegex("\\d{2}", "Ingrese el año");
-                    System.out.println(tarjetas.CardsYear(Year));
+                    msgScroll(tarjetas.CardsYear(Year));
                     break;
 
                 case "Ingresar una nueva Tarjeta de Credito":
