@@ -13,7 +13,7 @@ public class Html {
 
     public Html(String Type, String Name) {
         //Head Estandar
-        this.Head = "<head><title>Lista de "+Type+" de "+Name+"</title><link rel=\"stylesheet\" type=\"text/css\" href=\"style.css\"></head>";
+        this.Head = "<head><title>Lista de "+Type+" de "+Name+"</title><link rel=\"stylesheet\" type=\"text/css\" href=\"style.css\"><metacharset=“utf-8”></head>";
         this.Body = "<body></body>";
     }
 
