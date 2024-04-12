@@ -25,10 +25,10 @@ public class NodosUno {
             return;
         }
 
-        // buscar siguiente primo();
+        // buscar siguiente primo
         int sp = NextPrimo();
 
-        // añadir el siguiente primo
+        // Insertar siguiente primo
         int diff = sp - n.size();
         for (int i = 0; i < diff; i++) {
             n.add(NewNodo(n.size() + 1));
@@ -36,17 +36,17 @@ public class NodosUno {
     }
 
     public int NextPrimo() {
-        // buscar siguiente primo();
+        // buscar siguiente primo
         int sp = 0;
         for (sp = n.size() + 1; sp <= n.size() + 20; sp++) {
             if (isPrimo(sp))
                 break;
         }
-        System.out.println("Siguiente primo (punto 2) -> " + sp);
+        System.out.println(BG_B + "Siguiente primo (punto 2) -> " + sp + RT);
         return sp;
     }
 
-    private boolean isPrimo(int n) { // se podria reducir el rango de division hasta la mita del nuemero
+    private boolean isPrimo(int n) {
         for (int i = 2; i < n; i++) {
             if (n % i == 0)
                 return false;
@@ -57,7 +57,6 @@ public class NodosUno {
     public Numeros NewNodo(int digitos) {
         int x;
         while (true) {
-            // crear cadena
             String cadena = "";
             for (int i = 0; i < 3; i++) {
                 if (i == 0) {
@@ -112,7 +111,6 @@ public class NodosUno {
         return false;
     }
 
-    // UTILIDAD
     public int RandomNumber(int digitos) {
         int num = (int) Math.floor(Math.random() * (Math.pow(10, digitos)));
         // System.out.println(num);
