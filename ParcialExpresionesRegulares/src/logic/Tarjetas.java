@@ -71,13 +71,10 @@ public class Tarjetas {
         Tarjetas_Visa = tarjetas_Visa;
     }
 
-    public String CardsYear(String año) { // buscar todas las tarjetas con un año determinado desde los arraylist de
-        // mastercar y visa
-        Pattern patron = Pattern.compile("/" + año);
+    public String CardsYear(String year) {
+        Pattern patron = Pattern.compile("/" + year);
         String s = "--------MASTERCARD---------\n";
-        for (TarjetaCredito tarjetaCredito : Tarjetas_MasterCard) {// recorro el arraylist tarjetas_mastercard buscando,
-            // y agregando las tarjetas con el año
-            // correspondiente, y luego las agrego a un string
+        for (TarjetaCredito tarjetaCredito : Tarjetas_MasterCard) {
             Matcher match = patron.matcher(tarjetaCredito.getFecha());
             if (match.find()) {
                 s += "\nNumero: " + tarjetaCredito.getNumero() +
@@ -89,9 +86,7 @@ public class Tarjetas {
             }
         }
         s += "------------VISA--------------\n";
-        for (TarjetaCredito tarjetaCredito : Tarjetas_Visa) {// recorro el arraylist tarjetas_visa buscando, y agregando
-            // las tarjetas con el año correspondiente, y luego las
-            // agrego a un string
+        for (TarjetaCredito tarjetaCredito : Tarjetas_Visa) {
             Matcher match = patron.matcher(tarjetaCredito.getFecha());
             if (match.find()) {
                 s += "\nNumero: " + tarjetaCredito.getNumero() +
@@ -105,7 +100,7 @@ public class Tarjetas {
         return s;
     }
 
-    public void Ingresar(String nombre, String apellido, String numero, String fecha, String codigo, String tipo) {// ingresar
+    public void Insert(String nombre, String apellido, String numero, String fecha, String codigo, String tipo) {// ingresar
         // una
         // tarjeta
         // nueva
@@ -126,10 +121,9 @@ public class Tarjetas {
         }
     }
 
-    public boolean TarjetaNueva(String numero) {// verificar si el numero de tarjeta ingresado es nuevo
+    public boolean NewCard(String numero) {
         boolean bandera = true;
-        for (TarjetaCredito tarjetaCredito : Tarjetas) {// recorro el arraylist tarjetas buscando si ya hay una tarjeta
-            // con el numero ingresado
+        for (TarjetaCredito tarjetaCredito : Tarjetas) {
             if (tarjetaCredito.getNumero().equals(numero)) {
                 bandera = false;
                 break;
@@ -140,8 +134,7 @@ public class Tarjetas {
 
     public String ShowCards() {
         String s = "--------MASTERCARD---------\n";
-        for (TarjetaCredito tarjetaCredito : Tarjetas_MasterCard) {// recorro el arraylist tarjetas_mastercard agregando
-            // todas las tarjetas a un string
+        for (TarjetaCredito tarjetaCredito : Tarjetas_MasterCard) {
             s += "\nNumero: " + tarjetaCredito.getNumero() +
                     "\nFecha: " + tarjetaCredito.getFecha() +
                     "\nCodigo: " + tarjetaCredito.getCodigo() +
@@ -151,8 +144,7 @@ public class Tarjetas {
 
         }
         s += "------------VISA--------------\n";
-        for (TarjetaCredito tarjetaCredito : Tarjetas_Visa) {// recorro el arraylist tarjetas_visa agregando todas
-            // las tarjetas a un string
+        for (TarjetaCredito tarjetaCredito : Tarjetas_Visa) {
             s += "\nNumero: " + tarjetaCredito.getNumero() +
                     "\nFecha: " + tarjetaCredito.getFecha() +
                     "\nCodigo: " + tarjetaCredito.getCodigo() +
@@ -181,8 +173,7 @@ public class Tarjetas {
 
     public String ShowVisa() { // Mostrar todas las tarjetas visa
         String s = "------------VISA--------------\n";
-        for (TarjetaCredito tarjetaCredito : Tarjetas_Visa) {// recorro el arraylist tarjetas_visa agregando todas
-            // las tarjetas a un string
+        for (TarjetaCredito tarjetaCredito : Tarjetas_Visa) {
             s += "\nNumero: " + tarjetaCredito.getNumero() +
                     "\nFecha: " + tarjetaCredito.getFecha() +
                     "\nCodigo: " + tarjetaCredito.getCodigo() +

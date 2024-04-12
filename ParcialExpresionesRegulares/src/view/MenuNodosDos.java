@@ -3,6 +3,7 @@ package view;
 import bean.Menu;
 import logic.NodosDos;
 
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
@@ -14,27 +15,37 @@ public class MenuNodosDos extends Menu {
     }
 
     public void menu() {
-        NodosDos p2 = new NodosDos();
+        NodosDos nodosDos = new NodosDos();
         while (true) {
-            int opt;
+            String[] Options = {
+                    "Añadir nuevo nodo manualmente",
+                    "Añadir nuevo nodo automaticamente",
+                    "Mostrar nodos",
+                    "El numero mayor de cada nodo",
+                    "Volver"
+            };
+
+            String opt;
             try {
-                opt = Integer.parseInt(input(
-                        "Menu: \n1. Añadir nuevo nodo manualmente \n2. Añadir nuevo nodo automaticamente \n3. Mostrar nodos \n4. El numero mayor de cada nodo \n 0. Salir "));
+                opt = (String) JOptionPane.showInputDialog(
+                        null,
+                        "Seleccione la opción para el Nodo: ",
+                        "NodosDos",
+                        JOptionPane.QUESTION_MESSAGE,
+                        null,
+                        Options,
+                        Options[0]);
             } catch (Exception e) {
-                e.printStackTrace();
-                // control de la excepcion.
-                if (e.toString().contains("Cannot parse null string"))
-                    return;
-                msg("Se necesita una opcion valida.");
+                msg("Se necesita una opcion valida " + e.getMessage());
                 continue;
             }
 
             switch (opt) {
-                case 0: {
+                case "Volver": {
                     return;
                 }
 
-                case 1: // crear Nuevo Nodo Manualmente
+                case "Añadir nuevo nodo manualmente":
                     int menor;
                     try {
                         menor = Integer.parseInt(input("Ingrese el primer numero.").trim());
@@ -44,8 +55,8 @@ public class MenuNodosDos extends Menu {
                     }
 
                     int elementos;
-                    if (!p2.getAn().isEmpty()) {
-                        elementos = p2.siguientePrimo(p2.getAn().get(p2.getAn().size() - 1).size()) - 1;
+                    if (!nodosDos.getAn().isEmpty()) {
+                        elementos = nodosDos.NextPrimo(nodosDos.getAn().get(nodosDos.getAn().size() - 1).size()) - 1;
                     } else
                         elementos = 2;
 
@@ -73,7 +84,7 @@ public class MenuNodosDos extends Menu {
                                 arrayList.add(num);
                             }
                             System.out.println(arrayList);
-                            p2.crearNodo(arrayList);
+                            nodosDos.NewNodo(arrayList);
                         } else {
                             msg("Solo numeros menores que el primero!");
                         }
@@ -81,12 +92,12 @@ public class MenuNodosDos extends Menu {
                         msg("El patron no concuerda!");
                     break;
 
-                case 2: // crear automaticamente
-                    p2.crearNodo();
+                case "Añadir nuevo nodo automaticamente": // crear automaticamente
+                    nodosDos.NewNodo();
                     break;
 
-                case 3: // mostrar
-                    ArrayList<ArrayList<Integer>> an = p2.getAn();
+                case "Mostrar nodos":
+                    ArrayList<ArrayList<Integer>> an = nodosDos.getAn();
                     if (!an.isEmpty()) {
                         StringBuilder sb = new StringBuilder();
                         Iterator<ArrayList<Integer>> anI = an.iterator();
@@ -103,10 +114,10 @@ public class MenuNodosDos extends Menu {
                         msg("El ArrayList esta vacio.");
                     break;
 
-                case 4: // mostrar los numeros mayores de cada nodo
-                    an = p2.getAn();
+                case "El numero mayor de cada nodo":
+                    an = nodosDos.getAn();
                     if (!an.isEmpty())
-                        msgScroll(p2.NumerosMayores());
+                        msgScroll(nodosDos.NumbersMax());
                     else
                         msg("El ArrayList esta vacio.");
                     break;

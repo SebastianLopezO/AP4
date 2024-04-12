@@ -9,23 +9,23 @@ public class NodosDos {
         this.an = new ArrayList<ArrayList<Integer>>();
     }
 
-    public void crearNodo(ArrayList<Integer> numeros) { crearNodo(false, numeros); }
-    public void crearNodo() { crearNodo(true, null); }
-    public void crearNodo(boolean automatico, ArrayList<Integer> numeros) {
-        if(automatico && an.size() == 0) an.add(crearArrayList(3));
-        else if (automatico) an.add(crearArrayList( siguientePrimo(an.get(an.size()-1).size()) ));
+    public void NewNodo(ArrayList<Integer> numeros) { NewNodo(false, numeros); }
+    public void NewNodo() { NewNodo(true, null); }
+    public void NewNodo(boolean automatico, ArrayList<Integer> numeros) {
+        if(automatico && an.size() == 0) an.add(NewList(3));
+        else if (automatico) an.add(NewList( NextPrimo(an.get(an.size()-1).size()) ));
         else an.add(numeros);
     }
 
 
-    private ArrayList<Integer> crearArrayList(int e) {
+    private ArrayList<Integer> NewList(int e) {
         ArrayList<Integer> nuevo = new ArrayList<>();
 
         int primero = 1000;
         int x;
         for (int i = 0; i < e; i++) {
             do {
-                x = numeroAleatorio();
+                x = RandomNumber();
             } while (x > primero);
 
             if (nuevo.isEmpty()) { // si es el primero
@@ -38,29 +38,28 @@ public class NodosDos {
     }
 
 
-    public int siguientePrimo(int actualSize) {
+    public int NextPrimo(int actualSize) {
         // buscar siguiente primo();
         int sp = 0;
         for (sp = actualSize+1; sp <= actualSize + 20; sp++) {
-            if (esPrimo(sp)) break;
+            if (isPrimo(sp)) break;
         }
         System.out.println("Siguiente primo (punto 2) -> "+sp);
         return sp;
     }
-    private boolean esPrimo(int n) { // se podria reducir el rango de division hasta la mita del nuemero
+    private boolean isPrimo(int n) {
         for (int i = 2; i < n; i++) {
             if (n % i == 0) return false;
         }
         return true;
     }
 
-    private int numeroAleatorio() {
+    private int RandomNumber() {
         int num = (int) (Math.random() * 100);;
-        // System.out.println(num);
         return num;
     }
 
-    public String NumerosMayores(){ // busca los numeros mayores de cada nodo
+    public String NumbersMax(){
         String s="";
         for (ArrayList<Integer> arrayList : an) {
             int max = Integer.MIN_VALUE, i = 1;

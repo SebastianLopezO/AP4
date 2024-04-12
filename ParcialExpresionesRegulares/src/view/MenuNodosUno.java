@@ -4,6 +4,7 @@ import bean.Menu;
 import bean.Numeros;
 import logic.NodosUno;
 
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.regex.Pattern;
@@ -15,48 +16,57 @@ public class MenuNodosUno extends Menu {
     }
 
     public void menu() {
-        NodosUno p1 = new NodosUno();
+        NodosUno nodosUno = new NodosUno();
         while (true) {
-            int opt;
+            String[] Options = {
+                    "Generar nodos",
+                    "Ingresar nodos",
+                    "Mostrar ArrayList",
+                    "Promedios",
+                    "Volver",
+            };
+            String opt;
             try {
-                opt = Integer.parseInt(input(
-                        "Menu:  \n1. Ingresar nodos automaticamente. \n2. Ingresar nodos manualmente.\n3. Mostrar ArrayList. \n4. Promedios \n0. Salir"));
+                opt = (String) JOptionPane.showInputDialog(
+                        null,
+                        "Seleccione la opción para Nodos: ",
+                        "NodosUno",
+                        JOptionPane.QUESTION_MESSAGE,
+                        null,
+                        Options,
+                        Options[0]);
             } catch (Exception e) {
-                e.printStackTrace();
-                // control de la excepcion.
-                if (e.toString().contains("Cannot parse null string"))
-                    return;
-                msg("Se necesita una opcion valida.");
+                msg("Se necesita una opcion valida " + e.getMessage());
                 continue;
             }
 
             switch (opt) {
-                case 0: {
+                case "Volver": {
                     return;
                 }
 
-                case 1: // añadir automaticamente
+                case "Generar nodos":
                     msg("Añadiendo nodos hasta el siguiente numero primo...");
-                    p1.siguientesNodos();
+                    nodosUno.NextNodo();
                     break;
 
-                case 2: // añadir manualmente
+                case "Ingresar nodos":
                     int Nciclos;
-                    if (!p1.getArrayList().isEmpty()) {
-                        Nciclos = p1.siguientePrimo() - p1.getArrayList().size();
+                    if (!nodosUno.getArrayList().isEmpty()) {
+                        Nciclos = nodosUno.NextPrimo() - nodosUno.getArrayList().size();
                     } else
                         Nciclos = 2;
                     for (int i = 1; i <= Nciclos; i++) {
-                        String cadena = ValidacionNumeros(p1.getArrayList().size()+1, p1);
-                        p1.getArrayList().add(new Numeros(
+                        String cadena = ValidateNumber(nodosUno.getArrayList().size()+1, nodosUno);
+                        nodosUno.getArrayList().add(new Numeros(
                                 Arrays.stream(cadena.split(" ")).mapToInt(Integer::parseInt).toArray()));
                     }
                     break;
 
-                case 3:
-                    if (!p1.getArrayList().isEmpty()) {
+                case "Mostrar ArrayList":
+                    if (!nodosUno.getArrayList().isEmpty()) {
                         StringBuilder sb = new StringBuilder();
-                        ArrayList<Numeros> n = p1.getArrayList();
+                        ArrayList<Numeros> n = nodosUno.getArrayList();
                         for (int i = 0; i < n.size(); i++) {
                             sb.append("Nodo " + (i + 1) + "\n\tN1: " + n.get(i).getN1() + "\n\tN2: " + n.get(i).getN2()
                                     + "\n\tN3: " + n.get(i).getN3() + "\n");
@@ -66,8 +76,8 @@ public class MenuNodosUno extends Menu {
                         msg("El ArrayList esta vacio.");
                     break;
 
-                case 4:
-                    msgScroll(p1.promedios());
+                case "Promedios":
+                    msgScroll(nodosUno.Average());
                     break;
 
                 default:
@@ -78,25 +88,24 @@ public class MenuNodosUno extends Menu {
         }
     }
 
-    public String Validaciones(String patron, String msginput) {// metodo para realizar todas las valdiaciones con
-        // expresiones regulares
+    public String ValidateRegex(String patron, String msginput) {
         Pattern Patron = Pattern.compile(patron);
         String input;
         while (true) {
             input = input(msginput).trim();
-            if (!Patron.matcher(input).matches()) { // validar el formato correcto
+            if (!Patron.matcher(input).matches()) {
                 msg("Formato invalido");
             } else
                 return input;
         }
     }
 
-    public String ValidacionNumeros(int digitos, NodosUno p1) {
+    public String ValidateNumber(int digitos, NodosUno p1) {
         while (true) {
-            String cadena = Validaciones("\\d{" + digitos + "} \\d{" + digitos + "} \\d{" + digitos + "}",
+            String cadena = ValidateRegex("\\d{" + digitos + "} \\d{" + digitos + "} \\d{" + digitos + "}",
                     "Ingrese 3 numeros separados por un espacio, cada numero de " + digitos + " digitos y cada numero tiene que ser mas grande que el anterior (ej: # (#+1) (#+2))");
 
-            if (p1.verificarCadena(cadena+" ", digitos))
+            if (p1.ValidateString(cadena+" ", digitos))
                 return cadena;
             else msg("Cadad numero debe ser mayor que el anterior");
         }

@@ -67,7 +67,7 @@ public class MenuTarjetas extends Menu {
                     String tipo = ValidateRegex("(MasterCard|Visa)", "Ingrese el tipo de tarjeta (MaterCard o Visa)");
                     String nombre = ValidateRegex(".+", "Ingrese el nombre del dueño de la tarjeta").trim();
                     String apellido = ValidateRegex(".+", "Ingrese el apellido del dueño de la tarjeta").trim();
-                    tarjetas.Ingresar(nombre, apellido, numero, fecha, codigo, tipo);
+                    tarjetas.Insert(nombre, apellido, numero, fecha, codigo, tipo);
                     msg("Se a ingresado exitosamente");
                     break;
 
@@ -97,7 +97,7 @@ public class MenuTarjetas extends Menu {
         String input;
         while (true) {
             input = ValidateRegex("\\d{16}", "Ingrese el numero de la tarjeta (numero de 16 digitos)");
-            if (!tarjetas.TarjetaNueva(input)) {
+            if (!tarjetas.NewCard(input)) {
                 msg("La tarjeta ya existe");
             } else
                 return input;

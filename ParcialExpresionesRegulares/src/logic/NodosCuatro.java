@@ -12,7 +12,7 @@ public class NodosCuatro {
         Array = new ArrayList<Nodo>();
     }
 
-    public ArrayList<String> NumerosIgualesSeguidos(){ // Buscar dos numeros iguales en cualquier parte del string de entrada
+    public ArrayList<String> NumberEqualsNext(){
         ArrayList<String> codigos = new ArrayList<String>();
         Pattern patron = Pattern.compile("00|11|22|33|44|55|66|77|88|99");
         for (Nodo nodo : Array) { // recorro todo el Array buscando quien cumple con el patron
@@ -23,7 +23,7 @@ public class NodosCuatro {
         return codigos;
     }
 
-    public String Mostrar(){ // devuelve un string que contiene todos los datos del Array
+    public String Show(){
         String s = "";
         for (Nodo nodo : Array) {
             int i = 1;
