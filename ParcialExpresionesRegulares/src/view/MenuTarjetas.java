@@ -57,7 +57,7 @@ public class MenuTarjetas extends Menu {
 
                 case "Mostrar Tarjetas de Credito por un Año determinado":
                     String Year = ValidateRegex("\\d{2}", "Ingrese el año");
-                    msgScroll(tarjetas.CardsYear(Year));
+                    msgHtml(tarjetas.CardsYear(Year));
                     break;
 
                 case "Ingresar una nueva Tarjeta de Credito":
