@@ -1,4 +1,4 @@
-import utility.Menus;
+import logic.Menus;
 
 public class Main {
     public static void main(String[] args) {

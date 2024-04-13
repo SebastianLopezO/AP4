@@ -1,4 +1,4 @@
-package utility;
+package logic;
 
 import bean.Menu;
 import view.*;
