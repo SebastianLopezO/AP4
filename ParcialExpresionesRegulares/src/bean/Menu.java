@@ -3,6 +3,8 @@ package bean;
 import javax.swing.*;
 import java.awt.*;
 
+import static utility.Clr.*;
+
 public abstract class Menu  {
 
     private String title;
@@ -21,8 +23,15 @@ public abstract class Menu  {
         return JOptionPane.showInputDialog(null, msg, title, 3) ;
     }
 
-    public void msgHtml(String msg){
-        JOptionPane.showMessageDialog(null, msg, "Lista de " + this.title, JOptionPane.INFORMATION_MESSAGE);
+    public void msgHtml(String msg, int width, int height){
+        JEditorPane editorPane = new JEditorPane("text/html", msg);
+        editorPane.setEditable(false);
+
+        JScrollPane scrollPane = new JScrollPane(editorPane);
+        scrollPane.setPreferredSize(new Dimension( width,height));
+
+        JOptionPane.showMessageDialog(null, scrollPane, "Lista de " + this.title, JOptionPane.INFORMATION_MESSAGE);
+
     }
     public void msgScroll(String msg) {
         JTextArea textArea = new JTextArea(msg);

@@ -23,6 +23,8 @@ public class Clr {
     public static final String BG_W = "\u001B[47m"; // Fondo blanco (Background White)
     public static final String GR = "\u001B[90m"; //Color Gris
     public static final String BG_GR = "\u001B[100m"; //Fondo Gris
+
+    public static final String BG_LB = "\u001B[38;5;235m"; // #202020
     public static final String GRL = "\u001B[38;2;115;115;115m"; // #737373
     public static final String BG_GRL = "\u001B[48;2;115;115;115m"; // #737373
     public static final String GRD = "\u001B[38;2;64;64;64m"; // #404040

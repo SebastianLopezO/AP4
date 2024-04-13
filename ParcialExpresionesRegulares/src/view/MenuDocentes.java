@@ -157,7 +157,7 @@ public class MenuDocentes extends Menu {
 
                 isGrayDark = !isGrayDark;
             }
-            msgHtml(html.toString());
+            msgHtml(html.toString(),400,500);
         } else msg("La lista de Docentes esta vacia");
     }
 
