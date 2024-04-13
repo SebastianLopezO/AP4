@@ -7,7 +7,7 @@ import static utility.Clr.*;
 
 public abstract class Menu  {
 
-    private String title;
+    private final String title;
 
     public Menu(String title) {
         this.title = title;

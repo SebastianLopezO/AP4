@@ -3,6 +3,7 @@ package view;
 import bean.Docente;
 import bean.Menu;
 import logic.Docentes;
+import utility.Html;
 
 import javax.swing.*;
 import java.util.ArrayList;
@@ -132,7 +133,6 @@ public class MenuDocentes extends Menu {
     }
 
     private void ShowTeachers(ArrayList<Docente> docentes) {
-        if (!docentes.isEmpty()) {
             Iterator<Docente> i = docentes.iterator();
             StringBuilder html = new StringBuilder();
             html.append("<html><body><table border='1'>");
@@ -157,8 +157,12 @@ public class MenuDocentes extends Menu {
 
                 isGrayDark = !isGrayDark;
             }
+            html.append("</table></body></html>");
+            Html File = new Html("Docentes","POLI");
+            File.AddBody(html.toString());
+            File.Export("Docentes_POLI");
             msgHtml(html.toString(),400,500);
-        } else msg("La lista de Docentes esta vacia");
+
     }
 
     private String TypeTeachers() {

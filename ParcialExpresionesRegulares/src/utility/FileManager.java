@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 
 public class FileManager {
@@ -85,7 +86,7 @@ public class FileManager {
         ArrayList<String> output = new ArrayList<>();
 
         // Adicionar lineas al ArrayList de retorno
-        for (String l : lineas) output.add(l);
+        Collections.addAll(output, lineas);
         return output;
     }
 

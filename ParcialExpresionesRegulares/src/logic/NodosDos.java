@@ -55,7 +55,7 @@ public class NodosDos {
     }
 
     private int RandomNumber() {
-        int num = (int) (Math.random() * 100);;
+        int num = (int) (Math.random() * 100);
         return num;
     }
 
