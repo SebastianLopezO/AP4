@@ -14,7 +14,7 @@ public class NodosCuatro {
 
     public ArrayList<String> NumberEqualsNext(){
         ArrayList<String> codigos = new ArrayList<String>();
-        Pattern patron = Pattern.compile("00|11|22|33|44|55|66|77|88|99");
+        Pattern patron = Pattern.compile("(\\d)\\1");
         for (Nodo nodo : Array) {
             if(patron.matcher(nodo.getCodigo()).find()){
                 codigos.add(nodo.getCodigo());
