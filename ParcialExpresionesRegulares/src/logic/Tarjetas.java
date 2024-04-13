@@ -135,7 +135,7 @@ public class Tarjetas {
             String root = System.getProperty("user.dir");
             FileManager file = new FileManager(root + "/src/Data/Tarjetas.txt");
             String split = ";";
-            file.adicionarLinea("\n"+tipo + split + numero + split + fecha + split + nombre + split + apellido + split + codigo);
+            file.addLine("\n"+tipo + split + numero + split + fecha + split + nombre + split + apellido + split + codigo);
             TarjetaCredito tarjeta = new TarjetaCredito(tipo, numero, fecha, nombre, apellido, codigo);
             Tarjetas.add(tarjeta);
             Pattern Tipo = Pattern.compile("MasterCard");
