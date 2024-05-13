@@ -1,6 +1,6 @@
 package bean;
 
 @FunctionalInterface
-public interface Set<O> {
-    java.util.Set<O> realizar(java.util.Set<O> s1, java.util.Set<O> s2);
+public interface Set<set> {
+    java.util.Set<set> Do(java.util.Set<set> s1, java.util.Set<set> s2);
 }

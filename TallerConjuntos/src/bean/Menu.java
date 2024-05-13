@@ -6,6 +6,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.Date;
 import java.util.concurrent.atomic.AtomicReference;
+
+import static java.lang.Thread.sleep;
+
 public abstract class Menu  {
 
     private String title;
@@ -16,8 +19,8 @@ public abstract class Menu  {
 
     abstract public void menu();
 
-    public void msg(String msg) {
-        JOptionPane.showMessageDialog(null, msg, "title", 1);
+    public void Msg(String msg) {
+        JOptionPane.showMessageDialog(null, msg, "title", JOptionPane.INFORMATION_MESSAGE);
     }
 
     public void msgScroll(String msg) {
@@ -26,33 +29,35 @@ public abstract class Menu  {
         textArea.setLineWrap(true);
         textArea.setWrapStyleWord(true);
         scrollPane.setPreferredSize( new Dimension( 500, 500 ) );
-        JOptionPane.showMessageDialog(null, scrollPane, title, 1);
+        JOptionPane.showMessageDialog(null, scrollPane, title, JOptionPane.INFORMATION_MESSAGE);
     }
 
-    public String input(String msg) {
-        return JOptionPane.showInputDialog(null, msg, title, 3) ;
+    public String Input(String msg) {
+        return JOptionPane.showInputDialog(null, msg, title, JOptionPane.QUESTION_MESSAGE) ;
     }
 
-    public Object inputSelect(String msg, String titleSelect, String[] options) {
-        return JOptionPane.showInputDialog(null, msg, titleSelect, JOptionPane.QUESTION_MESSAGE,null, options, options[0]);
+    public Object InputSelect(String msg, String titleSelect, String[] options) {
+        return JOptionPane.showInputDialog(null,
+                msg,
+                titleSelect,
+                JOptionPane.QUESTION_MESSAGE,
+                null,
+                options,
+                options[0]);
     }
 
-    public Date inputDate() {
+    public Date InputDate() {
 
-        // Crear un nuevo marco (ventana)
         JFrame frame = new JFrame("Seleccionar fecha");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Configurar el cierre del programa cuando se cierra la ventana
         frame.setSize(300, 200); // Establecer el tamaño del marco
 
-        // Crear un nuevo panel principal con disposición GridBagLayout
         JPanel mainPanel = new JPanel();
         mainPanel.setLayout(new GridBagLayout());
         frame.add(mainPanel);
 
-        // Configurar restricciones para los componentes dentro del panel
         GridBagConstraints constraints = new GridBagConstraints();
 
-        // Crear y agregar una etiqueta al panel
         JLabel label = new JLabel("Seleccione una fecha:");
         constraints.gridx = 0;
         constraints.gridy = 0;
@@ -87,18 +92,22 @@ public abstract class Menu  {
             }
         });
 
-        // Hacer visible el marco
         frame.setVisible(true);
 
-        // Esperar que se capture la fecha para retornarla
+        // Esperar que se capture la fecha para return
         while (FinalDate.get() == null) {
-            // Esperar mas tiempo entre verificacion para reducir el uso de CPU
             try {
-                Thread.sleep(200);
+                sleep(200);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
         }
         return FinalDate.get();
     }
+    private String ValidateRegex;
+    private String ValidateID;
+
+    protected abstract String ValidateRegex(String patron, String msginput);
+
+    protected abstract String ValidateID();
 }
