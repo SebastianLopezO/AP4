@@ -60,6 +60,8 @@ public class Menus extends Menu {
                     "Docentes de Catedra, tiempo completo y ocasional a la vez",
                     "Docentes por Genero y tipo de Contrato",
                     "Docentes por Facultad",
+                    "Docentes por Genero y Facultad",
+                    "Docentes por Facultad y Tipo de Contrato",
                     "Docentes segmentados",
                     "Ingresar docente",
                     "Salir"
@@ -115,9 +117,18 @@ public class Menus extends Menu {
                         } else
                             M[2]++;
                     }
-                    Msg("Tiempo Completo: \n    Hombres: " + M[0] + "\n    Mujeres: " + F[0]
-                            + "\nOcacional: \n    Hombres: " + M[1] + "\n    Mujeres: " + F[1]
-                            + "\nCatedra: \n    Hombres: " + M[2] + "\n    Mujeres: " + F[2]);
+
+                    String htmlString = "<html><body>" +
+                            "<h1>Docentes por Genero y Tipo de contrato</h1>" +
+                            "<table border='1' style='width:50%; border-collapse: collapse;'>" +
+                            "<tr style='background-color: #000000; color: #ffffff; font-weight: bold;'><th>Tipo de Contrato</th><th>Hombres</th><th>Mujeres</th></tr>" +
+                            String.format("<tr><td>Tiempo Completo</td><td>%d</td><td>%d</td></tr>", M[0], F[0]) +
+                            String.format("<tr><td>Ocasional</td><td>%d</td><td>%d</td></tr>", M[1], F[1]) +
+                            String.format("<tr><td>Cátedra</td><td>%d</td><td>%d</td></tr>", M[2], F[2]) +
+                            "</table>" +
+                            "</body></html>";
+
+                    msgHtml(htmlString,300,300);
                 }
                 case "Docentes por Facultad" -> {
                     Map<String, Integer> facultades = new HashMap<>();
@@ -146,6 +157,41 @@ public class Menus extends Menu {
                     htmlString.append("</body></html>");
                     msgHtml(htmlString.toString(), 500, 300);
                 }
+                case "Docentes por Genero y Facultad" ->{
+                    Map<String, int[]> facultades = new HashMap<>();
+                    OnlyTeachers = union(union(fullTime, Occasional), Adjunct);
+                    for (Docente docente : OnlyTeachers) {
+                        String faculty = docente.getFaculty();
+                        char gender = docente.getGender();
+                        int genderIndex = (gender == 'M' || gender == 'm') ? 0 : 1; // 0 para hombres, 1 para mujeres
+
+                        facultades.putIfAbsent(faculty, new int[2]);
+                        facultades.get(faculty)[genderIndex]++;
+                    }
+
+                    StringBuilder htmlString = new StringBuilder();
+                    htmlString.append("<html><body>");
+                    htmlString.append("<table border='1' style='width:100%; border-collapse: collapse;'>");
+                    htmlString.append("<tr style='background-color: #000000; color: #ffffff; font-weight: bold;'>" +
+                            "<th>Facultad</th><th>Hombres</th><th>Mujeres</th></tr>");
+
+                    boolean isGrayDark = true;
+                    String bgColor;
+                    for (Map.Entry<String, int[]> entry : facultades.entrySet()) {
+                        bgColor = isGrayDark ? "#404040" : "#737373";
+                        htmlString.append("<tr style='background-color: ").append(bgColor).append("; color: #ffffff;'>");
+                        htmlString.append("<td>").append(entry.getKey()).append("</td>");
+                        htmlString.append("<td>").append(entry.getValue()[0]).append("</td>"); // Hombres
+                        htmlString.append("<td>").append(entry.getValue()[1]).append("</td>"); // Mujeres
+                        htmlString.append("</tr>");
+                        isGrayDark = !isGrayDark;
+                    }
+
+                    htmlString.append("</table>");
+                    htmlString.append("</body></html>");
+                    msgHtml(htmlString.toString(), 500, 300);
+                }
+
                 case "Docentes segmentados" -> {
                     String[] opts = {"Union", "Intersecion", "Diferencia"};
                     String selec = (String) InputSelect("¿Qué operacion desea realizar?", "Operacion?", opts);
@@ -169,7 +215,7 @@ public class Menus extends Menu {
                         conjunto1 = Adjunct;
                     } else if (conjuntos.get(2).equals(c1)) {
                         conjunto1 = Occasional;
-                    } else System.out.println("xd?");
+                    } else System.out.println("Tipo de docente no permitido");
                     conjuntos.remove(c1);
 
                     // Seleccionar segundo conjunto
@@ -182,7 +228,7 @@ public class Menus extends Menu {
                     } else if (c2.contains("ocacionales")) {
                         conjunto2 = Occasional;
                     } else System.out.println("Tipo de docente no permitido");
-                    ArrayList<String> atrs = new ArrayList<>(Arrays.asList("Titulo", "Facultad", "Sexo", "Horas que dicta", "Asignaturas que dicta", "Año de nacimiento"));
+                    ArrayList<String> atrs = new ArrayList<>(Arrays.asList("Titulo", "Facultad", "Genero", "Horas que dicta", "Asignaturas que dicta", "Año de nacimiento"));
                     String atr = (String) InputSelect("Selecione atributo por el cual se va a filtrar", "Atributo", atrs.toArray(new String[atrs.size()]));
                     Predicate<Docente> condicion_final = docente -> {
                         return true;
@@ -196,21 +242,21 @@ public class Menus extends Menu {
                         String facultad = RecordDepartament();
                         condicion_final = docente -> docente.getDegree().equals(facultad);
 
-                    } else if (atrs.get(2).equals(atr)) { // Sexo
-                        String[] sexos = {"M", "F"};
-                        Character sexo = (Character) InputSelect("Selecione el sexo (Masculino, Femenino)", "Sexo", sexos);
+                    } else if (atrs.get(2).equals(atr)) { // Genero
+                        String[] genero = {"M", "F"};
+                        Character sexo = (Character) InputSelect("Selecione el Genero (Masculino, Femenino)", "Genero", genero);
                         condicion_final = docente -> docente.getGender() == sexo;
                     }
                     int numero;
                     String atributo;
                     if (atrs.get(3).equals(atr)) { // Horas que dicta
                         numero = RecordDictationHours();
-                        atributo = "getHorasDictadas";
+                        atributo = "getHoursTaught";
                         numeric = true;
 
                     } else if (atrs.get(4).equals(atr)) { // Asignaturas
                         numero = RecordDictationCourses();
-                        atributo = "getAsignaturasDicta";
+                        atributo = "getCoursesTaught";
                         numeric = true;
 
                     } else if (atrs.get(5).equals(atr)) { // Año de nacimento
@@ -220,7 +266,7 @@ public class Menus extends Menu {
                             num = Input("Escriba el año [yyyy]: ");
                         } while (!m.matcher(num).matches());
                         numero = Integer.parseInt(num);
-                        atributo = "getAnoNacimiento";
+                        atributo = "getDateBirth";
                         numeric = true;
 
                     } else {
@@ -256,7 +302,7 @@ public class Menus extends Menu {
                         String opr = (String) InputSelect("Bajo que condicion quiere operar?", "Condicion", oprs.toArray(new String[oprs.size()]));
                         if (oprs.get(1).equals(opr)) condicion_final = condicion_final.negate();
                     }
-                    msgHtml(Show(funcionAdaptativa(conjunto1, conjunto2, condicion_final, Set_SELECIONADA), ""), 500, 500);
+                    msgHtml(Show(funcionAdaptativa(conjunto1, conjunto2, condicion_final, Set_SELECIONADA), c1+" y "+c2), 500, 500);
                 }
                 case "Ingresar docente" -> {
                     String id = ValidateID();
@@ -462,6 +508,15 @@ public class Menus extends Menu {
             }
         } catch (IOException | ParseException e) {
             System.out.println(Clr.R  + "[-] Añadiendo Docente: " + e.getMessage()+ Clr.RT );
+        }
+    }
+
+    private void countDocentes(List<Docente> docentes, String contractType, Map<String, Map<String, Integer>> map) {
+        for (Docente docente : docentes) {
+            String faculty = docente.getFaculty();
+            map.putIfAbsent(faculty, new HashMap<>());
+            Map<String, Integer> contractMap = map.get(faculty);
+            contractMap.put(contractType, contractMap.getOrDefault(contractType, 0) + 1);
         }
     }
 
