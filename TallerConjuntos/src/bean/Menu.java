@@ -1,6 +1,7 @@
 package bean;
 
 import com.toedter.calendar.JDateChooser;
+import utility.Clr;
 
 import javax.swing.*;
 import java.awt.*;
@@ -51,7 +52,7 @@ public abstract class Menu  {
     public Date InputDate() {
 
         JFrame frame = new JFrame("Seleccionar fecha");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Configurar el cierre del programa cuando se cierra la ventana
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(300, 200); // Establecer el tamaño del marco
 
         JPanel mainPanel = new JPanel();
@@ -89,8 +90,7 @@ public abstract class Menu  {
                 FinalDate.set(fechaselect);
                 frame.dispose();
             } else {
-                // Imprimir si no se seleccionó ninguna fecha
-                System.out.println("No se seleccionó ninguna fecha");
+                System.out.println(Clr.R + "No se seleccionó ninguna fecha" + Clr.RT);
             }
         });
 

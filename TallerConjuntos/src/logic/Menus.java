@@ -62,7 +62,6 @@ public class Menus extends Menu {
                     "Docentes por Facultad",
                     "Docentes por Genero y Facultad",
                     "Docentes por Facultad y Tipo de Contrato",
-                    "Docentes segmentados",
                     "Ingresar docente",
                     "Salir"
             };
@@ -130,6 +129,55 @@ public class Menus extends Menu {
 
                     msgHtml(htmlString,300,300);
                 }
+                case "Docentes por Facultad y Tipo de Contrato" -> {
+                    OnlyTeachers = union(union(fullTime, Occasional), Adjunct);
+                    String[] ListFaculty = ListFaculty(OnlyTeachers);
+                    String StringListFaculty = "";
+                    for(String faculty: ListFaculty){
+                        StringListFaculty += "<th>"+faculty+"</th>";
+                    }
+                    Map<String, Integer> FacultyFullTime = new HashMap<>();
+                    for (Docente docente : fullTime) {
+                        String faculty = docente.getFaculty();
+                        FacultyFullTime.put(faculty, FacultyFullTime.getOrDefault(faculty, 0) + 1);
+                    }
+
+                    Map<String, Integer> FacultyOccasional = new HashMap<>();
+                    for (Docente docente : Occasional) {
+                        String faculty = docente.getFaculty();
+                        FacultyOccasional.put(faculty, FacultyOccasional.getOrDefault(faculty, 0) + 1);
+                    }
+
+                    Map<String, Integer> FacultyAdjunct = new HashMap<>();
+                    for (Docente docente : Adjunct) {
+                        String faculty = docente.getFaculty();
+                        FacultyAdjunct.put(faculty, FacultyAdjunct.getOrDefault(faculty, 0) + 1);
+                    }
+
+
+                    StringBuilder htmlString = new StringBuilder();
+                    htmlString.append("<html><body>");
+                    htmlString.append("<h1>Docentes por Facultad y Tipo de contrato</h1>");
+                    htmlString.append("<table border='1' style='width:100%; border-collapse: collapse;'>");
+                    htmlString.append("<tr style='background-color: #000000; color: #ffffff; font-weight: bold;'>");
+                    htmlString.append("<th>Tipo de Contrato</th>").append(StringListFaculty).append("</tr>");
+
+                    htmlString.append("<tr><td>Tiempo Completo</td>");
+                    for (Map.Entry<String, Integer> entry : FacultyFullTime.entrySet()) {
+                        htmlString.append("<td>").append(entry.getValue()).append("</td>");
+                    }
+                    htmlString.append("<tr><td>Ocasional</td>");
+                    for (Map.Entry<String, Integer> entry : FacultyOccasional.entrySet()) {
+                        htmlString.append("<td>").append(entry.getValue()).append("</td>");
+                    }
+                    htmlString.append("<tr><td>Cátedra</td>");
+                    for (Map.Entry<String, Integer> entry : FacultyAdjunct.entrySet()) {
+                        htmlString.append("<td>").append(entry.getValue()).append("</td>");
+                    }
+                    htmlString.append("</table>");
+                    htmlString.append("</body></html>");
+                    msgHtml(htmlString.toString(),700,300);
+                }
                 case "Docentes por Facultad" -> {
                     Map<String, Integer> facultades = new HashMap<>();
                     OnlyTeachers = union(union(fullTime, Occasional), Adjunct);
@@ -191,119 +239,6 @@ public class Menus extends Menu {
                     htmlString.append("</body></html>");
                     msgHtml(htmlString.toString(), 500, 300);
                 }
-
-                case "Docentes segmentados" -> {
-                    String[] opts = {"Union", "Intersecion", "Diferencia"};
-                    String selec = (String) InputSelect("¿Qué operacion desea realizar?", "Operacion?", opts);
-                    Set<Docente> Set_SELECIONADA;
-                    if (selec.equals(opts[0])) {
-                        Set_SELECIONADA = Set_UNION;
-                    } else if (selec.equals(opts[1])) {
-                        Set_SELECIONADA = Set_INTERSECION;
-                    } else if (selec.equals(opts[2])) {
-                        Set_SELECIONADA = Set_DIFERENCIA;
-                    } else {
-                        System.out.println(Clr.R + "[!] Esta opción no es valida:" + selec + Clr.RT);
-                        continue;
-                    }
-                    ArrayList<String> conjuntos = new ArrayList<>(Arrays.asList("Profesores de tiempo completo", "Profesores de catedra", "Profesores ocacionales"));
-                    String c1 = (String) InputSelect("Seleccione el primer conjunto: ", "Conjunto 1", conjuntos.toArray(new String[conjuntos.size()]));
-                    ArrayList<Docente> conjunto1 = null;
-                    if (conjuntos.get(0).equals(c1)) {
-                        conjunto1 = fullTime;
-                    } else if (conjuntos.get(1).equals(c1)) {
-                        conjunto1 = Adjunct;
-                    } else if (conjuntos.get(2).equals(c1)) {
-                        conjunto1 = Occasional;
-                    } else System.out.println("Tipo de docente no permitido");
-                    conjuntos.remove(c1);
-
-                    // Seleccionar segundo conjunto
-                    String c2 = (String) InputSelect("Seleccione el segundo conjunto: ", "Conjunto 2", conjuntos.toArray(new String[conjuntos.size()]));
-                    ArrayList<Docente> conjunto2 = null;
-                    if (c2.contains("completo")) {
-                        conjunto2 = fullTime;
-                    } else if (c2.contains("catedra")) {
-                        conjunto2 = Adjunct;
-                    } else if (c2.contains("ocacionales")) {
-                        conjunto2 = Occasional;
-                    } else System.out.println("Tipo de docente no permitido");
-                    ArrayList<String> atrs = new ArrayList<>(Arrays.asList("Titulo", "Facultad", "Genero", "Horas que dicta", "Asignaturas que dicta", "Año de nacimiento"));
-                    String atr = (String) InputSelect("Selecione atributo por el cual se va a filtrar", "Atributo", atrs.toArray(new String[atrs.size()]));
-                    Predicate<Docente> condicion_final = docente -> {
-                        return true;
-                    };
-                    boolean numeric = false;
-                    if (atrs.get(0).equals(atr)) { // Titulo
-                        String titulo = RecordDegree();
-                        condicion_final = docente -> docente.getDegree().equals(titulo);
-
-                    } else if (atrs.get(1).equals(atr)) { // Facultad
-                        String facultad = RecordDepartament();
-                        condicion_final = docente -> docente.getDegree().equals(facultad);
-
-                    } else if (atrs.get(2).equals(atr)) { // Genero
-                        String[] genero = {"M", "F"};
-                        Character sexo = (Character) InputSelect("Selecione el Genero (Masculino, Femenino)", "Genero", genero);
-                        condicion_final = docente -> docente.getGender() == sexo;
-                    }
-                    int numero;
-                    String atributo;
-                    if (atrs.get(3).equals(atr)) { // Horas que dicta
-                        numero = RecordDictationHours();
-                        atributo = "getHoursTaught";
-                        numeric = true;
-
-                    } else if (atrs.get(4).equals(atr)) { // Asignaturas
-                        numero = RecordDictationCourses();
-                        atributo = "getCoursesTaught";
-                        numeric = true;
-
-                    } else if (atrs.get(5).equals(atr)) { // Año de nacimento
-                        Pattern m = Pattern.compile("\\d{4}");
-                        String num;
-                        do {
-                            num = Input("Escriba el año [yyyy]: ");
-                        } while (!m.matcher(num).matches());
-                        numero = Integer.parseInt(num);
-                        atributo = "getDateBirth";
-                        numeric = true;
-
-                    } else {
-                        numero = 0;
-                        atributo = "";
-                    }
-                    if (numeric) {
-                        String comparacion = ChangeCondition();
-                        condicion_final = docente -> {
-                            try {
-                                Method getter = Docente.class.getMethod(atributo);
-                                int valorAtributo = (int) getter.invoke(docente);
-                                switch (comparacion) {
-                                    case "<":
-                                        return valorAtributo < numero;
-                                    case ">":
-                                        return valorAtributo > numero;
-                                    case "==":
-                                        return valorAtributo == (numero);
-                                    case "!=":
-                                        return valorAtributo != (numero);
-                                    default:
-                                        System.out.println("Operación no soportada: " + comparacion);
-                                        return false;
-                                }
-                            } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
-                                e.printStackTrace();
-                                return false;
-                            }
-                        };
-                    } else {
-                        ArrayList<String> oprs = new ArrayList<>(Arrays.asList("Igual", "Diferente"));
-                        String opr = (String) InputSelect("Bajo que condicion quiere operar?", "Condicion", oprs.toArray(new String[oprs.size()]));
-                        if (oprs.get(1).equals(opr)) condicion_final = condicion_final.negate();
-                    }
-                    msgHtml(Show(funcionAdaptativa(conjunto1, conjunto2, condicion_final, Set_SELECIONADA), c1+" y "+c2), 500, 500);
-                }
                 case "Ingresar docente" -> {
                     String id = ValidateID();
                     String name = ValidateRegex("[a-zA-Z\\s]+", "Ingrese el nombre completo");
@@ -331,31 +266,6 @@ public class Menus extends Menu {
                 default -> Msg("Opcion invalida.");
             }
         }
-    }
-
-    public ArrayList<Docente> funcionAdaptativa(ArrayList<Docente> c1, ArrayList<Docente> c2,
-                                                Predicate<Docente> condicion, Set<Docente> set) {
-
-        System.out.println(Clr.B + "[¡] FUNCION ADAPTABLE " + Clr.RT);
-        java.util.Set<Docente> filtro1 = new HashSet<>();
-        for (Docente p : c1) {
-            if (condicion.test(p)) {
-                filtro1.add(p);
-                System.out.println(Clr.R + "[!] Filtro 2, coincidencia encontrada" + p.toString() + Clr.RT);
-            } else System.out.println(Clr.R + "[!] Invalido: " + p.getId() + Clr.RT);
-
-        }
-
-        java.util.Set<Docente> filtro2 = new HashSet<>();
-        for (Docente p : c2) {
-            if (condicion.test(p)) {
-                filtro2.add(p);
-                System.out.println(Clr.R + "[!] Filtro 2, coincidencia encontrada" + p.toString() + Clr.RT);
-            } else System.out.println(Clr.R + "[!] Invalido: " + p.getId() + Clr.RT);
-
-        }
-
-        return new ArrayList<>(set.Do(filtro1, filtro2));
     }
 
     public static ArrayList<Docente> union(ArrayList<Docente> lists1, ArrayList<Docente> lista2) {
@@ -389,51 +299,6 @@ public class Menus extends Menu {
 
         // Convertir Set a String[]
         return listFaculty.toArray(new String[0]);
-    }
-
-
-    private String RecordDepartament() {
-        String[] facultades = {"Artes","Humanidades","Ciencias","Ingenieria","Derecho","Medicina","Negocios","Agricultura","Arquitectura","Administracion","Deportes","Idiomas","Comunicacion"};
-        return (String) InputSelect("Seleccione la Facultad.", "Facultad", facultades);
-    }
-
-    private String RecordDegree() {
-        String[] titulos = {"Pregrado", "Especializacion", "Maestria", "Doctorado"};
-        return (String) InputSelect("Seleccione el Titulo", "Titulo", titulos);
-    }
-
-    private int RecordDictationCourses() {
-        Pattern m = Pattern.compile("0*10|0*\\d");
-        String num;
-        do {
-            num = Input("Escriba el numero de asignaturas que dicta [1-10]: ");
-        } while (!m.matcher(num).matches());
-        return Integer.parseInt(num);
-    }
-
-    private int RecordDictationHours() {
-        Pattern m = Pattern.compile("0*20|0*1\\d|0*\\d");
-        String num;
-        do {
-            num = Input("Escriba las horas que ha dictadas [1-20]: ");
-        } while (!m.matcher(num).matches());
-        return Integer.parseInt(num);
-    }
-
-    // funcion a
-    private String ChangeCondition() {
-        ArrayList<String> options = new ArrayList<>(Arrays.asList("Igual", "Diferente", "Mayor", "Menor"));
-        String opr = (String) InputSelect("Bajo que condicion quiere operar?", "Condicion", options.toArray(new String[options.size()]));
-        if (options.get(0).equals(opr)) { // igual
-            return "==";
-        } else if (options.get(1).equals(opr)) { // Diferente
-            return "!=";
-        } else if (options.get(2).equals(opr)) { // Mayor
-            return ">";
-        } else if (options.get(3).equals(opr)) { // Menor
-            return "<";
-        }
-        return "==";
     }
 
     public String Show(ArrayList<Docente> d, String Type) {
@@ -511,14 +376,6 @@ public class Menus extends Menu {
         }
     }
 
-    private void countDocentes(List<Docente> docentes, String contractType, Map<String, Map<String, Integer>> map) {
-        for (Docente docente : docentes) {
-            String faculty = docente.getFaculty();
-            map.putIfAbsent(faculty, new HashMap<>());
-            Map<String, Integer> contractMap = map.get(faculty);
-            contractMap.put(contractType, contractMap.getOrDefault(contractType, 0) + 1);
-        }
-    }
 
     @Override
     protected String ValidateRegex(String patron, String msginput) {
