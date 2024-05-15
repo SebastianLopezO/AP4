@@ -635,9 +635,9 @@ public class JCalendar extends JPanel implements PropertyChangeListener {
 	 */
 	public void setSelectableDateRange(Date min, Date max) {
 		dayChooser.setSelectableDateRange(min, max);
-	};
+	}
 
-	/**
+    /**
 	 * Gets the minimum selectable date.
 	 * 
 	 * @return the minimum selectable date

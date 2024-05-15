@@ -143,8 +143,8 @@ public class JLocaleChooser extends JComboBox implements ItemListener {
 		frame.setVisible(true);
 	}
 
-	private Locale[] locales;
+	private final Locale[] locales;
 	private Locale locale;
-	private int localeCount;
+	private final int localeCount;
 }
 

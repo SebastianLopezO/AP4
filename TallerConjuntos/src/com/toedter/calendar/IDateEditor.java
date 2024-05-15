@@ -43,7 +43,7 @@ public interface IDateEditor {
 	 * 
 	 * @return the date
 	 */
-	public Date getDate();
+    Date getDate();
 
 	/**
 	 * Sets the date. This should be implemented as a bound property, firing the
@@ -52,7 +52,7 @@ public interface IDateEditor {
 	 * @param date
 	 *            the date to set
 	 */
-	public void setDate(Date date);
+    void setDate(Date date);
 
 	/**
 	 * Sets the date format string, e.g. "MM/dd/yy". If the date format string
@@ -62,14 +62,14 @@ public interface IDateEditor {
 	 * @param dateFormatString
 	 *            the date format string
 	 */
-	public void setDateFormatString(String dateFormatString);
+    void setDateFormatString(String dateFormatString);
 
 	/**
 	 * Returns the date format string.
 	 * 
 	 * @return the date format string
 	 */
-	public String getDateFormatString();
+    String getDateFormatString();
 
 	/**
 	 * Sets a valid date range for selectable dates. If max is before
@@ -82,35 +82,35 @@ public interface IDateEditor {
 	 *            the maximum selectable date or null (then the maximum date should be
 	 *            set to 01\01\9999)
 	 */
-	public void setSelectableDateRange(Date min, Date max) ;
+    void setSelectableDateRange(Date min, Date max) ;
 
 	/**
 	 * Gets the minimum selectable date.
 	 * 
 	 * @return the minimum selectable date
 	 */
-	public Date getMaxSelectableDate();
+    Date getMaxSelectableDate();
 	
 	/**
 	 * Gets the maximum selectable date.
 	 * 
 	 * @return the maximum selectable date
 	 */
-	public Date getMinSelectableDate();
+    Date getMinSelectableDate();
 
 	/**
 	 * Sets the maximum selectable date.
 	 * 
 	 * @param max maximum selectable date
 	 */
-	public void setMaxSelectableDate(Date max);
+    void setMaxSelectableDate(Date max);
 
 	/**
 	 * Sets the minimum selectable date.
 	 * 
 	 * @param min minimum selectable date
 	 */
-	public void setMinSelectableDate(Date min);
+    void setMinSelectableDate(Date min);
 
 	/**
 	 * Returns the UI component, e.g. the actual JTextField implementing the
@@ -118,7 +118,7 @@ public interface IDateEditor {
 	 * 
 	 * @return the UI component
 	 */
-	public JComponent getUiComponent();
+    JComponent getUiComponent();
 
 	/**
 	 * Sets the locale. Usually this should have impact on the current date
@@ -127,7 +127,7 @@ public interface IDateEditor {
 	 * @param locale
 	 *            the locale to set
 	 */
-	public void setLocale(Locale locale);
+    void setLocale(Locale locale);
 
 	/**
 	 * Enables or disables the UI compoment.
@@ -135,7 +135,7 @@ public interface IDateEditor {
 	 * @param enabled
 	 *            true, if the UI component should be enabled.
 	 */
-	public void setEnabled(boolean enabled);
+    void setEnabled(boolean enabled);
 
 	/**
 	 * Adds a property change listener that should be added to the implementing
@@ -145,7 +145,7 @@ public interface IDateEditor {
 	 * @param listener
 	 *            the property change listener.
 	 */
-	public void addPropertyChangeListener(PropertyChangeListener listener);
+    void addPropertyChangeListener(PropertyChangeListener listener);
 
 	/**
 	 * Adds a property change listener that should be added to the implementing
@@ -157,7 +157,7 @@ public interface IDateEditor {
 	 * @param listener
 	 *            the property change listener.
 	 */
-	public void addPropertyChangeListener(String propertyName, PropertyChangeListener listener);
+    void addPropertyChangeListener(String propertyName, PropertyChangeListener listener);
 
 	/**
 	 * Removes a property change listener.
@@ -165,7 +165,7 @@ public interface IDateEditor {
 	 * @param listener
 	 *            the property change listener.
 	 */
-	public void removePropertyChangeListener(PropertyChangeListener listener);
+    void removePropertyChangeListener(PropertyChangeListener listener);
 
 	/**
 	 * Removes the listener from the date editor's property change listeners for the specific property.
@@ -175,5 +175,5 @@ public interface IDateEditor {
 	 * @param listener
 	 *            the listener
 	 */
-	public void removePropertyChangeListener(String propertyName, PropertyChangeListener listener);
+    void removePropertyChangeListener(String propertyName, PropertyChangeListener listener);
 }

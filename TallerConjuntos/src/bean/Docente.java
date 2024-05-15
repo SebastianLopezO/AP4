@@ -90,15 +90,13 @@ public class Docente {
 
     @Override
     public String toString() {
-        StringBuilder s = new StringBuilder();
-        s.append("CC: " + getId() + "\n");
-        s.append("Nombre Completo: " + getName() + "\n");
-        s.append("Facultad: " + getFaculty() + "\n");
-        s.append("Titulo: " + getDegree() + "\n");
-        s.append("Sexo: " + getGender() + "\n");
-        s.append("Asignaturas Dictadas: " + getCoursesTaught() + "\n");
-        s.append("Horas Dictadas: " + getHoursTaught() + "\n");
-        s.append("Fecha Nacimiento: " + (getDateBirth().toLocaleString().split(",")[0]) + "\n\n");
-        return s.toString();
+        return "Id: " + getId() + "\n" +
+                "Nombre: " + getName() + "\n" +
+                "Facultad: " + getFaculty() + "\n" +
+                "Titulo: " + getDegree() + "\n" +
+                "Genero: " + getGender() + "\n" +
+                "Asignaturas Dictadas: " + getCoursesTaught() + "\n" +
+                "Horas Dictadas: " + getHoursTaught() + "\n" +
+                "Fecha Nacimiento: " + (getDateBirth().toString().split(",")[0]) + "\n\n";
     }
 }

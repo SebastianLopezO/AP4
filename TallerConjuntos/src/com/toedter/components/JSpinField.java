@@ -103,7 +103,7 @@ public class JSpinField extends JPanel implements ChangeListener, CaretListener,
 		textField.addFocusListener(this);
 		spinner = new JSpinner() {
 			private static final long serialVersionUID = -6287709243342021172L;
-			private JTextField textField = new JTextField();
+			private final JTextField textField = new JTextField();
 
 			public Dimension getPreferredSize() {
 				Dimension size = super.getPreferredSize();
@@ -174,7 +174,7 @@ public class JSpinField extends JPanel implements ChangeListener, CaretListener,
 	 */
 	public void setValue(int newValue) {
 		setValue(newValue, true, true);
-		spinner.setValue(new Integer(value));
+		spinner.setValue(Integer.valueOf(value));
 	}
 
 	/**

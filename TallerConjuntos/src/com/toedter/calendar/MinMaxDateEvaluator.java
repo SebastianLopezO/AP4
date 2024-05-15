@@ -5,7 +5,7 @@ import java.util.Date;
 
 public class MinMaxDateEvaluator implements IDateEvaluator {
 
-	private DateUtil dateUtil = new DateUtil();
+	private final DateUtil dateUtil = new DateUtil();
 	
 	public boolean isSpecial(Date date) {
 		return false;

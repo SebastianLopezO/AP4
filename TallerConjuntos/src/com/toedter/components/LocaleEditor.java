@@ -31,10 +31,10 @@ import java.util.Locale;
  * @version $LastChangedDate: 2006-04-28 13:50:52 +0200 (Fr, 28 Apr 2006) $
  */
 public class LocaleEditor extends java.beans.PropertyEditorSupport {
-	private Locale[] locales;
-	private String[] localeStrings;
+	private final Locale[] locales;
+	private final String[] localeStrings;
 	private Locale locale;
-	private int length;
+	private final int length;
 
 	/**
 	 * Default LocaleEditor constructor.

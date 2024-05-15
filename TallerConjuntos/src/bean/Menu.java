@@ -11,7 +11,7 @@ import static java.lang.Thread.sleep;
 
 public abstract class Menu  {
 
-    private String title;
+    private final String title;
 
     public Menu(String title) {
         this.title = title;
@@ -23,13 +23,15 @@ public abstract class Menu  {
         JOptionPane.showMessageDialog(null, msg, "title", JOptionPane.INFORMATION_MESSAGE);
     }
 
-    public void msgScroll(String msg) {
-        JTextArea textArea = new JTextArea(msg);
-        JScrollPane scrollPane = new JScrollPane(textArea);
-        textArea.setLineWrap(true);
-        textArea.setWrapStyleWord(true);
-        scrollPane.setPreferredSize( new Dimension( 500, 500 ) );
-        JOptionPane.showMessageDialog(null, scrollPane, title, JOptionPane.INFORMATION_MESSAGE);
+    public void msgHtml(String msg, int width, int height){
+        JEditorPane editorPane = new JEditorPane("text/html", msg);
+        editorPane.setEditable(false);
+
+        JScrollPane scrollPane = new JScrollPane(editorPane);
+        scrollPane.setPreferredSize(new Dimension( width,height));
+
+        JOptionPane.showMessageDialog(null, scrollPane, "Lista de " + this.title, JOptionPane.INFORMATION_MESSAGE);
+
     }
 
     public String Input(String msg) {

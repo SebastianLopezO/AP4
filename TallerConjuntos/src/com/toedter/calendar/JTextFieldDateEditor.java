@@ -86,7 +86,7 @@ public class JTextFieldDateEditor extends JFormattedTextField implements IDateEd
 
 	private int millis;
 
-	private Calendar calendar;
+	private final Calendar calendar;
 
 	public JTextFieldDateEditor() {
 		this(false, null, null, ' ');

@@ -68,7 +68,7 @@ public class JSpinnerDateEditor extends JSpinner implements IDateEditor,
 				((DateEditor) getEditor()).getFormat().applyPattern(
 						dateFormatString);
 			}
-			((SpinnerDateModel) getModel()).setValue(date);
+			getModel().setValue(date);
 		}
 		firePropertyChange("date", oldDate, date);
 	}

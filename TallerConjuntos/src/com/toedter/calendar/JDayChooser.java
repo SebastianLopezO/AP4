@@ -578,7 +578,7 @@ public class JDayChooser extends JPanel implements ActionListener, KeyListener,
 	public void actionPerformed(ActionEvent e) {
 		JButton button = (JButton) e.getSource();
 		String buttonText = button.getText();
-		int day = new Integer(buttonText).intValue();
+		int day = Integer.parseInt(buttonText);
 		setDay(day);
 	}
 
@@ -1021,17 +1021,13 @@ public class JDayChooser extends JPanel implements ActionListener, KeyListener,
 					g.setColor(days[7].getBackground());
 				}
 				g.fillRect(0, 0, getWidth(), getHeight());
-				if (isBorderPainted()) {
-					setContentAreaFilled(true);
-				} else {
-					setContentAreaFilled(false);
-				}
+                setContentAreaFilled(isBorderPainted());
 			}
 			super.paint(g);
 		}
-	};
+	}
 
-	public void addDateEvaluator(IDateEvaluator dateEvaluator) {
+    public void addDateEvaluator(IDateEvaluator dateEvaluator) {
 		dateEvaluators.add(dateEvaluator);
 	}
 

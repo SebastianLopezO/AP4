@@ -66,11 +66,11 @@ public class JMonthChooser extends JPanel implements ItemListener,
 
 	private JYearChooser yearChooser;
 
-	private JComboBox comboBox;
+	private final JComboBox comboBox;
 
 	private JSpinner spinner;
 
-	private boolean initialized;
+	private final boolean initialized;
 
 	private boolean localInitialize;
 
@@ -105,7 +105,7 @@ public class JMonthChooser extends JPanel implements ItemListener,
 			spinner = new JSpinner() {
 				private static final long serialVersionUID = 1L;
 
-				private JTextField textField = new JTextField();
+				private final JTextField textField = new JTextField();
 
 				public Dimension getPreferredSize() {
 					Dimension size = super.getPreferredSize();
@@ -158,7 +158,7 @@ public class JMonthChooser extends JPanel implements ItemListener,
 		SpinnerNumberModel model = (SpinnerNumberModel) ((JSpinner) e
 				.getSource()).getModel();
 		int value = model.getNumber().intValue();
-		boolean increase = (value > oldSpinnerValue) ? true : false;
+		boolean increase = value > oldSpinnerValue;
 		oldSpinnerValue = value;
 
 		int month = getMonth();

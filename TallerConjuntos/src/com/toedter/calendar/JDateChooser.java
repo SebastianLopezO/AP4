@@ -259,9 +259,7 @@ public class JDateChooser extends JPanel implements ActionListener,
 							.getSelectedPath();
 					MenuElement[] newMe = new MenuElement[me.length + 1];
 					newMe[0] = popup;
-					for (int i = 0; i < me.length; i++) {
-						newMe[i + 1] = me[i];
-					}
+                    System.arraycopy(me, 0, newMe, 1, me.length);
 					hasListened = true;
 					MenuSelectionManager.defaultManager()
 							.setSelectedPath(newMe);
