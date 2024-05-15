@@ -2,7 +2,7 @@ package utility;
 
 public class TestSpeedisPrimo {
     public static void main(String[] args) {
-        int numero = 307;
+        int numero = 1511;
         long inicio, fin;
         double originalTime, optimizadoTime;
 

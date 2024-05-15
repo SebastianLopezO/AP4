@@ -1,0 +1,3 @@
+Poner numeros a ordenar -> mostrar pilares para metodos de ordenamiento burbuja, seleccion, insercion,shell sort, merge, heap sort, quick sort
+
+Generar datos aleatoriamente sin repetir

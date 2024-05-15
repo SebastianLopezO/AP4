@@ -1,0 +1,1 @@
+Poner los registros de ejecución con el algoritmo, para mostrar un promedio de ejecuciones
