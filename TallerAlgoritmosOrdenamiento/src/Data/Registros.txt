@@ -1,1 +1,12 @@
 Poner los registros de ejecución con el algoritmo, para mostrar un promedio de ejecuciones
+
+usar con vectores y arrays list
+
+promedio con campana de gauss
+
+varianza(concentración de los datos) menor es mas cerca y mas grande mas alejado
+
+5 de junio o 7 de junio
+
+graficar promedios
+
